@@ -13,14 +13,14 @@ namespace DictionariesSystem.Data.Logs
         {
         }
 
-        public virtual IDbSet<UserLog> UserLogs { get; set; }
-
-        public virtual IDbSet<ExceptionLog> ExceptionLogs { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<LogsDbContext>(modelBuilder);
             Database.SetInitializer(sqliteConnectionInitializer);
         }
+
+        public virtual IDbSet<UserLog> UserLogs { get; set; }
+
+        public virtual IDbSet<ExceptionLog> ExceptionLogs { get; set; }
     }
 }
