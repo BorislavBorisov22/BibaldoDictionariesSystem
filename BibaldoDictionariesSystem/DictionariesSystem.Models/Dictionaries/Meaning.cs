@@ -7,6 +7,11 @@ namespace DictionariesSystem.Models.Dictionaries
     {
         private const int MaxDescriptionLength = 200;
 
+        public Meaning()
+        {
+            this.Words = new HashSet<Word>();
+        }
+
         [Key]
         public int Id { get; set; }
 

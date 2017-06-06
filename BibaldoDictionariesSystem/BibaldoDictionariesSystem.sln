@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.Models", "DictionariesSystem.Models\DictionariesSystem.Models.csproj", "{928437ED-8A5E-4257-B685-7C92E44D49D8}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.Data.Users", "DictionariesSystem.Data.Users\DictionariesSystem.Data.Users.csproj", "{5D667D6B-675F-409E-B8A2-E9778FF66EEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.Data.Dictionaries", "DictionariesSystem.Data.Dictionaries\DictionariesSystem.Data.Dictionaries.csproj", "{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.Contracts", "DictionariesSystem.Contracts\DictionariesSystem.Contracts.csproj", "{EBD8272B-9914-48EB-89EA-072F2528C474}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD8272B-9914-48EB-89EA-072F2528C474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD8272B-9914-48EB-89EA-072F2528C474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD8272B-9914-48EB-89EA-072F2528C474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD8272B-9914-48EB-89EA-072F2528C474}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

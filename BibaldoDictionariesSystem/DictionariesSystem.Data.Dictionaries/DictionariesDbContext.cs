@@ -11,7 +11,6 @@ namespace DictionariesSystem.Data.Dictionaries
             : base(ConnectionStringName)
         {
         }
-        public virtual IDbSet<Synonym> Synonyms { get; set; }
 
         public virtual IDbSet<Dictionary> Dictionaries  { get; set; }
 

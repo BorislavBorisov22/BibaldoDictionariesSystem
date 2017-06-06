@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,16 +6,21 @@ namespace DictionariesSystem.Models.Dictionaries
 {
     public class Dictionary
     {
+        private const int MaxAuthorLength = 20;
+        private const int MaxTitleLength = 30;
+
         public Dictionary()
         {
             this.CreatedOn = DateTime.Now;
             this.Words = new HashSet<Word>();
         }
 
-        private const int MaxAuthorLength = 20;
-
         [Key]
         public int Id { get; set; }
+
+        [Required]
+        [MaxLength(MaxTitleLength)]
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(MaxAuthorLength)]
