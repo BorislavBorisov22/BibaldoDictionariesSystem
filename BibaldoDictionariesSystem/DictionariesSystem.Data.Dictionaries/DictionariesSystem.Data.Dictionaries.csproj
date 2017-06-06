@@ -50,6 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DictionariesDbContext.cs" />
+    <Compile Include="Migrations\201706061727264_Initial.cs" />
+    <Compile Include="Migrations\201706061727264_Initial.Designer.cs">
+      <DependentUpon>201706061727264_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706061750156_Added unique constraints for names of languages and words.cs" />
+    <Compile Include="Migrations\201706061750156_Added unique constraints for names of languages and words.Designer.cs">
+      <DependentUpon>201706061750156_Added unique constraints for names of languages and words.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +70,14 @@
       <Project>{928437ED-8A5E-4257-B685-7C92E44D49D8}</Project>
       <Name>DictionariesSystem.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706061727264_Initial.resx">
+      <DependentUpon>201706061727264_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061750156_Added unique constraints for names of languages and words.resx">
+      <DependentUpon>201706061750156_Added unique constraints for names of languages and words.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

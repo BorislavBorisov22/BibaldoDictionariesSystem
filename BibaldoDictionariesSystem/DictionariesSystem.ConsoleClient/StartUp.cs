@@ -1,8 +1,6 @@
 ﻿using DictionariesSystem.Data.Dictionaries;
 using DictionariesSystem.Data.Logs;
 using DictionariesSystem.Data.Users;
-using DictionariesSystem.Models.Logs;
-using System;
 using System.Linq;
 
 namespace DictionariesSystem.ConsoleClient
