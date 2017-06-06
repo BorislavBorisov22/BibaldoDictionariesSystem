@@ -1,4 +1,5 @@
 ﻿using DictionariesSystem.Models.Dictionaries;
+using DictionariesSystem.Models.Dictionaries.Enums;
 using System.Collections.Generic;
 using System.Data.Entity;
 
@@ -12,13 +13,14 @@ namespace DictionariesSystem.Data.Dictionaries
         {
 
         }
+        public virtual IDbSet<Synonym> Synonims { get; set; }
 
-        public DbSet<Dictionary> Dictionaries  { get; set; }
+        public virtual IDbSet<Dictionary> Dictionaries  { get; set; }
 
-        //public DbSet<Language> Languages { get; set; }
+        public virtual IDbSet<Language> Languages { get; set; }
 
-        public DbSet<Meaning> Meanings { get; set; }
+        public virtual IDbSet<Meaning> Meanings { get; set; }
 
-        public DbSet<Word> Words { get; set; }
+        public virtual IDbSet<Word> Words { get; set; }
     }
 }
