@@ -7,7 +7,7 @@ namespace DictionariesSystem.Data.Dictionaries
 {
     public class DictionariesDbContext : DbContext
     {
-        private const string ConnectionStringName = "DictionariesDB";
+        private const string ConnectionStringName = "DictionariesDb";
 
         public DictionariesDbContext()
             : base(ConnectionStringName)

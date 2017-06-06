@@ -6,7 +6,7 @@ namespace DictionariesSystem.Data.Logs
 {
     public class LogsDbContext : DbContext
     {
-        private const string ConnectionStringName = "LoggingDb";
+        private const string ConnectionStringName = "LogsDb";
 
         public LogsDbContext()
             : base(ConnectionStringName)

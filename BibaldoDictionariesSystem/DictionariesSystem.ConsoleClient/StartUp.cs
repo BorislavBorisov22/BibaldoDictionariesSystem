@@ -3,6 +3,7 @@ using DictionariesSystem.Data.Logs;
 using DictionariesSystem.Data.Users;
 using DictionariesSystem.Models.Logs;
 using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace DictionariesSystem.ConsoleClient
@@ -15,10 +16,10 @@ namespace DictionariesSystem.ConsoleClient
             loggingDbContext.ExceptionLogs.FirstOrDefault();
 
             var dictionaryDbContext = new DictionariesDbContext();
-            dictionaryDbContext.Database.CreateIfNotExists();
+            dictionaryDbContext.Languages.FirstOrDefault();
 
             var usersDbContext = new UsersDbContext();
-            usersDbContext.Database.CreateIfNotExists();
+            usersDbContext.Users.FirstOrDefault();
         }
     }
 }
