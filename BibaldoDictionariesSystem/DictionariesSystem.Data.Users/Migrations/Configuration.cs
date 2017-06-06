@@ -1,5 +1,6 @@
 namespace DictionariesSystem.Data.Users.Migrations
 {
+    using Dictionaries;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;

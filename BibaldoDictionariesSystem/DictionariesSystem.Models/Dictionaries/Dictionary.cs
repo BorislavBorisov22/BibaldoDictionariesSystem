@@ -14,8 +14,10 @@ namespace DictionariesSystem.Models.Dictionaries
 
         public DateTime CreatedOn { get; set; }
 
-        public virtual Language Language { get; set; }
+        /*public int LanguageId { get; set; }
 
-        public virtual IEnumerable<Word> Words { get; set; }
+        public virtual Language Language { get; set; }*/
+
+        public virtual ICollection<Word> Words { get; set; }
     }
 }

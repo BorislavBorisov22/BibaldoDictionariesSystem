@@ -9,6 +9,8 @@ namespace DictionariesSystem.Models.Dictionaries
 
         public string Name { get; set; }
 
-        public virtual Dictionary Dictionary { get; set; }
+        /*public int DictionaryId { get; set; }
+
+        public virtual Dictionary Dictionary { get; set; }*/
     }
 }

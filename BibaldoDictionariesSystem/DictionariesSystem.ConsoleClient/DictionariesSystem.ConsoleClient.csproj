@@ -73,9 +73,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DictionariesSystem.Data.Dictionaries\DictionariesSystem.Data.Dictionaries.csproj">
+      <Project>{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}</Project>
+      <Name>DictionariesSystem.Data.Dictionaries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Data.Logs\DictionariesSystem.Data.Logs.csproj">
       <Project>{AFDC8239-90B4-4990-8B13-9C915DB26452}</Project>
       <Name>DictionariesSystem.Data.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DictionariesSystem.Data.Users\DictionariesSystem.Data.Users.csproj">
+      <Project>{5D667D6B-675F-409E-B8A2-E9778FF66EEC}</Project>
+      <Name>DictionariesSystem.Data.Users</Name>
     </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Models\DictionariesSystem.Models.csproj">
       <Project>{928437ED-8A5E-4257-B685-7C92E44D49D8}</Project>

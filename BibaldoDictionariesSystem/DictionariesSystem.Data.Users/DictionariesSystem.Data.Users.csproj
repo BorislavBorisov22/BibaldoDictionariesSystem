@@ -73,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DictionariesSystem.Data.Dictionaries\DictionariesSystem.Data.Dictionaries.csproj">
+      <Project>{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}</Project>
+      <Name>DictionariesSystem.Data.Dictionaries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Models\DictionariesSystem.Models.csproj">
       <Project>{928437ED-8A5E-4257-B685-7C92E44D49D8}</Project>
       <Name>DictionariesSystem.Models</Name>
