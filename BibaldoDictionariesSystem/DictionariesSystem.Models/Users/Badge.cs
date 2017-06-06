@@ -1,7 +1,7 @@
-﻿namespace DictionariesSystem.Models.Users
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace DictionariesSystem.Models.Users
+{
     public class Badge
     {
         public Badge()

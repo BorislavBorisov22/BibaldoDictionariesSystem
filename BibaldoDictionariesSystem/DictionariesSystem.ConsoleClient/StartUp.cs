@@ -26,6 +26,9 @@ namespace DictionariesSystem.ConsoleClient
             var dictionaryDbContext = new DictionariesDbContext();
             dictionaryDbContext.Database.CreateIfNotExists();
             dictionaryDbContext.SaveChanges();
+
+            var usersDbContext = new UsersDbContext();
+            usersDbContext.Database.CreateIfNotExists();
         }
     }
 }
