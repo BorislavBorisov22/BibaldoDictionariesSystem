@@ -11,14 +11,12 @@ namespace DictionariesSystem.Models.Dictionaries
 
         public string Name { get; set; }
 
-        //public SpeechPart SpeechPart { get; set; }
+        public SpeechPart SpeechPart { get; set; }
 
         public int DictionaryId { get; set; }
 
         public virtual Dictionary Dictionary { get; set; }
         
         public virtual ICollection<Meaning> Meanings { get; set; }
-
-        public virtual ICollection<Word> Synonims { get; set; }
     }
 }

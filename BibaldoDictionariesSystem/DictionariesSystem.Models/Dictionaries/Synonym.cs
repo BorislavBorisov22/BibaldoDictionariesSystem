@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DictionariesSystem.Models.Dictionaries
 {
-    public class Language
+    public class Synonym
     {
-        [ForeignKey("Dictionary")]
+        [Key]
         public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public virtual Dictionary Dictionary { get; set; }
+        
+        public Word FirstWord { get; set; }
+        
+        public Word SecondWord { get; set; }
     }
 }

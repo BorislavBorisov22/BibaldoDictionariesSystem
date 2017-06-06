@@ -67,6 +67,7 @@
     <Compile Include="Dictionaries\Enums\SpeechPart.cs" />
     <Compile Include="Dictionaries\Language.cs" />
     <Compile Include="Dictionaries\Meaning.cs" />
+    <Compile Include="Dictionaries\Synonym.cs" />
     <Compile Include="Dictionaries\Word.cs" />
     <Compile Include="Logs\Enums\UserAction.cs" />
     <Compile Include="Logs\ExceptionLog.cs" />
