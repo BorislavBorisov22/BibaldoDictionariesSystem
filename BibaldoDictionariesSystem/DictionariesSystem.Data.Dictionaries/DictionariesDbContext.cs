@@ -5,13 +5,13 @@ using System.Data.Entity;
 
 namespace DictionariesSystem.Data.Dictionaries
 {
-
     public class DictionariesDbContext : DbContext
     {
-        public DictionariesDbContext()
-            : base("DictionaryDB")
-        {
+        private const string ConnectionStringName = "DictionariesDB";
 
+        public DictionariesDbContext()
+            : base(ConnectionStringName)
+        {
         }
         public virtual IDbSet<Synonym> Synonims { get; set; }
 
