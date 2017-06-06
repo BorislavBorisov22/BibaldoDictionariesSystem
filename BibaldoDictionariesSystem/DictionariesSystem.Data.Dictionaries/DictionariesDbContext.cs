@@ -1,6 +1,4 @@
 ﻿using DictionariesSystem.Models.Dictionaries;
-using DictionariesSystem.Models.Dictionaries.Enums;
-using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace DictionariesSystem.Data.Dictionaries
@@ -13,7 +11,6 @@ namespace DictionariesSystem.Data.Dictionaries
             : base(ConnectionStringName)
         {
         }
-        public virtual IDbSet<Synonym> Synonims { get; set; }
 
         public virtual IDbSet<Dictionary> Dictionaries  { get; set; }
 
