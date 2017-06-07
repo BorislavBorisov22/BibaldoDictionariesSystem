@@ -2,7 +2,7 @@
 using DictionariesSystem.Models.Logs;
 using System;
 using System.Linq;
-
+ 
 namespace DictionariesSystem.ConsoleClient
 {
     public class StartUp
@@ -12,15 +12,16 @@ namespace DictionariesSystem.ConsoleClient
             var loggingDbContext = new LogsDbContext();
             loggingDbContext.ExceptionLogs.FirstOrDefault();
 
-            var exceptionLog = new ExceptionLog
+            for (int i = 0; i < 10; i++)
             {
-                Message = "Test Logging Message",
-                LoggedOn = DateTime.Now
-            };
+                loggingDbContext.ExceptionLogs.Add(new ExceptionLog
+                {
+                    Message = "Another test" + i,
+                    LoggedOn = DateTime.Now
+                });
+            }
 
-            loggingDbContext.ExceptionLogs.Add(exceptionLog);
             loggingDbContext.SaveChanges();
-
         }
     }
 }
