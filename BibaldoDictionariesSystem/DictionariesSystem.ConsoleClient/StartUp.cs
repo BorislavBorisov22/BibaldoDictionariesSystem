@@ -1,8 +1,8 @@
-﻿using DictionariesSystem.Data.Logs;
-using DictionariesSystem.Models.Logs;
-using System;
+using DictionariesSystem.Data.Dictionaries;
+using DictionariesSystem.Data.Logs;
+using DictionariesSystem.Data.Users;
 using System.Linq;
- 
+
 namespace DictionariesSystem.ConsoleClient
 {
     public class StartUp
@@ -12,16 +12,11 @@ namespace DictionariesSystem.ConsoleClient
             var loggingDbContext = new LogsDbContext();
             loggingDbContext.ExceptionLogs.FirstOrDefault();
 
-            for (int i = 0; i < 10; i++)
-            {
-                loggingDbContext.ExceptionLogs.Add(new ExceptionLog
-                {
-                    Message = "Another test" + i,
-                    LoggedOn = DateTime.Now
-                });
-            }
+            var dictionaryDbContext = new DictionariesDbContext();
+            dictionaryDbContext.Languages.FirstOrDefault();
 
-            loggingDbContext.SaveChanges();
+            var usersDbContext = new UsersDbContext();
+            usersDbContext.Users.FirstOrDefault();
         }
     }
 }

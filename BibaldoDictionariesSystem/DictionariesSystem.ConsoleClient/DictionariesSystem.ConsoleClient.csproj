@@ -40,6 +40,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.2.2.7\lib\net45\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.2.2.7\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql.EntityFramework, Version=2.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.EntityFramework.2.2.7\lib\net45\Npgsql.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.CodeFirst, Version=1.3.1.18, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLite.CodeFirst.1.3.1.18\lib\net45\SQLite.CodeFirst.dll</HintPath>
     </Reference>
@@ -73,9 +82,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DictionariesSystem.Data.Dictionaries\DictionariesSystem.Data.Dictionaries.csproj">
+      <Project>{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}</Project>
+      <Name>DictionariesSystem.Data.Dictionaries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Data.Logs\DictionariesSystem.Data.Logs.csproj">
       <Project>{AFDC8239-90B4-4990-8B13-9C915DB26452}</Project>
       <Name>DictionariesSystem.Data.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DictionariesSystem.Data.Users\DictionariesSystem.Data.Users.csproj">
+      <Project>{5D667D6B-675F-409E-B8A2-E9778FF66EEC}</Project>
+      <Name>DictionariesSystem.Data.Users</Name>
     </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Models\DictionariesSystem.Models.csproj">
       <Project>{928437ED-8A5E-4257-B685-7C92E44D49D8}</Project>

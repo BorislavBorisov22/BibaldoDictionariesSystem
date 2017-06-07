@@ -1,13 +1,13 @@
-﻿namespace DictionariesSystem.Data.Users
-{
-    using DictionariesSystem.Models.Users;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure.Annotations;
+﻿using DictionariesSystem.Models.Users;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 
+namespace DictionariesSystem.Data.Users
+{
     public class UsersDbContext : DbContext
     {
-        private const string ConnectionStringName = "Users";
+        private const string ConnectionStringName = "UsersDb";
 
         public UsersDbContext()
             : base(ConnectionStringName)
