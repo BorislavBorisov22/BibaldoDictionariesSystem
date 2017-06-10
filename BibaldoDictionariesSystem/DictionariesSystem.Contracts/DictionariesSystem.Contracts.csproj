@@ -42,6 +42,10 @@
   <ItemGroup>
     <Compile Include="Core\Commands\ICommand.cs" />
     <Compile Include="Core\Factories\ICommandFactory.cs" />
+    <Compile Include="Core\Factories\IDictionariesFactory.cs" />
+    <Compile Include="Core\Factories\ILogsFactory.cs" />
+    <Compile Include="Core\Factories\IUserFactory.cs" />
+    <Compile Include="Core\Factories\IWordsImporterFactory.cs" />
     <Compile Include="Core\IEngine.cs" />
     <Compile Include="Core\Providers\ICommandProcessor.cs" />
     <Compile Include="Core\Providers\IDateProvider.cs" />

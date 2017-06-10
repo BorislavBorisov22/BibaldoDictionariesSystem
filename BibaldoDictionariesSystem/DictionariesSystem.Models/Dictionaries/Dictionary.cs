@@ -11,7 +11,6 @@ namespace DictionariesSystem.Models.Dictionaries
 
         public Dictionary()
         {
-            this.CreatedOn = DateTime.Now;
             this.Words = new HashSet<Word>();
             this.Meanings = new HashSet<Meaning>();
         }

@@ -3,27 +3,22 @@ using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Users;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DictionariesSystem.Framework.Core.Commands.Read
 {
     public class LoginUserCommand : BaseCommand, ICommand
     {
-        public const int NumberOfParameters = 2;
-        private readonly IUserProvider user;
-        private readonly IRepository<User> users;
+        private const int NumberOfParameters = 2;
 
-        public LoginUserCommand(IRepository<User> users, IUserProvider user)
+        private readonly IUserProvider userProvider;
+
+        public LoginUserCommand(IUserProvider userProvider)
         {
-            Guard.WhenArgument(user, "user").IsNull().Throw();
-            Guard.WhenArgument(users, "users").IsNull().Throw();
+            Guard.WhenArgument(userProvider, "user").IsNull().Throw();
 
-            this.user = user;
-            this.users = users;
+            this.userProvider = userProvider;
         }
 
         protected override int ParametersCount
@@ -41,15 +36,15 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
 
             base.Execute(parameters);
 
-            var foundUser = this.users.All(u => u.Username == username).FirstOrDefault();
+            //var foundUser = this.users.All(u => u.Username == username).FirstOrDefault();
 
-            Guard.WhenArgument(foundUser, "foundUser").IsNull().Throw();
+            //Guard.WhenArgument(foundUser, "foundUser").IsNull().Throw();
 
-            Guard.WhenArgument(passHash, "passHash").IsNotEqual(foundUser.Passhash).Throw();
+            //Guard.WhenArgument(passHash, "passHash").IsNotEqual(foundUser.Passhash).Throw();
 
-            this.user.Login(username, passHash);
+            this.userProvider.Login(username, passHash);
 
-            return $"User {username} has logged in.";
+            return $"User {username} has logged successfully.";
         }
     }
 }

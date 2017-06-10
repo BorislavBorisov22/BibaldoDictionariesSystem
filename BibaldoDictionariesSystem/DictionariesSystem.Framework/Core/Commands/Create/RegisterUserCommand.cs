@@ -3,20 +3,17 @@ using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Users;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class RegisterUserCommand : BaseCommand, ICommand
     {
-        public const int NumberOfParameters = 2;
+        private const int NumberOfParameters = 2;
+
         private readonly IRepository<User> repository;
         private readonly IUnitOfWork unitOfWork;
-        private readonly IUserProvider user;
+        private readonly IUserProvider userProvider;
 
         public RegisterUserCommand(IRepository<User> repository, IUnitOfWork unitOfWork, IUserProvider user)
         {
@@ -26,7 +23,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 
             this.repository = repository;
             this.unitOfWork = unitOfWork;
-            this.user = user;
+            this.userProvider = user;
         }
 
         protected override int ParametersCount
@@ -44,7 +41,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             string username = parameters[0];
             string password = parameters[1];
 
-            this.user.Login(username, password);
+            this.userProvider.Login(username, password);
 
             string restult = $"A new user with username: {username} was created and logged in.";
 

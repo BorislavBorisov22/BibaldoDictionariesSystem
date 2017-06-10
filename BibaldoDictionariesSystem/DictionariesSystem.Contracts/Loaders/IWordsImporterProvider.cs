@@ -2,6 +2,6 @@
 {
     public interface IWordsImporterProvider
     {
-        void Import(string filePath);
+        void Import(string filePath, string dictionaryTitle);
     }
 }

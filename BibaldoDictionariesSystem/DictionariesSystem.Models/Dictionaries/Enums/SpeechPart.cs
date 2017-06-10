@@ -7,6 +7,7 @@
         Adjective = 2,
         Adverb = 3,
         Pronoun = 4,
-        Preposition = 5
+        Preposition = 5,
+        NotSpecified = 6
     }
 }
