@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Commands\Read\LoginUserCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Providers\CommandProcessor.cs" />
     <Compile Include="Core\Providers\ConsoleReader.cs" />
