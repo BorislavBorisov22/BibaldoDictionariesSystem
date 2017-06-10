@@ -13,6 +13,7 @@ namespace DictionariesSystem.Models.Dictionaries
         {
             this.CreatedOn = DateTime.Now;
             this.Words = new HashSet<Word>();
+            this.Meanings = new HashSet<Meaning>();
         }
 
         [Key]
@@ -31,5 +32,7 @@ namespace DictionariesSystem.Models.Dictionaries
         public virtual Language Language { get; set; }
 
         public virtual ICollection<Word> Words { get; set; }
+
+        public virtual ICollection<Meaning> Meanings { get; set; }
     }
 }
