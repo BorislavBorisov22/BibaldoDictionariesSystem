@@ -102,6 +102,10 @@
       <Project>{ebd8272b-9914-48eb-89ea-072f2528c474}</Project>
       <Name>DictionariesSystem.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DictionariesSystem.Data.Common\DictionariesSystem.Data.Common.csproj">
+      <Project>{38923FC0-65AC-4986-A0D4-0D38C5B95FA2}</Project>
+      <Name>DictionariesSystem.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Data.Dictionaries\DictionariesSystem.Data.Dictionaries.csproj">
       <Project>{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}</Project>
       <Name>DictionariesSystem.Data.Dictionaries</Name>
@@ -113,6 +117,10 @@
     <ProjectReference Include="..\DictionariesSystem.Data.Users\DictionariesSystem.Data.Users.csproj">
       <Project>{5D667D6B-675F-409E-B8A2-E9778FF66EEC}</Project>
       <Name>DictionariesSystem.Data.Users</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DictionariesSystem.Framework\DictionariesSystem.Framework.csproj">
+      <Project>{96EF44E7-3074-4715-AC7E-E6EC695A77C1}</Project>
+      <Name>DictionariesSystem.Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Models\DictionariesSystem.Models.csproj">
       <Project>{928437ED-8A5E-4257-B685-7C92E44D49D8}</Project>

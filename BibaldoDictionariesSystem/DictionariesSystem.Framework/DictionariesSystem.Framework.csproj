@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Providers\CommandProcessor.cs" />
+    <Compile Include="Core\Providers\ConsoleReader.cs" />
+    <Compile Include="Core\Providers\ConsoleWriter.cs" />
+    <Compile Include="Core\Providers\DateProvider.cs" />
+    <Compile Include="Core\Providers\Loggers\ExceptionLogger.cs" />
+    <Compile Include="Core\Providers\Loggers\UserLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,10 +66,14 @@
       <Project>{ebd8272b-9914-48eb-89ea-072f2528c474}</Project>
       <Name>DictionariesSystem.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DictionariesSystem.Models\DictionariesSystem.Models.csproj">
+      <Project>{928437ED-8A5E-4257-B685-7C92E44D49D8}</Project>
+      <Name>DictionariesSystem.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Commands\" />
-    <Folder Include="Core\Providers\" />
+    <Folder Include="Core\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
