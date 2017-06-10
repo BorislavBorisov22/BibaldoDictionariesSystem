@@ -1,15 +1,12 @@
-﻿using DictionariesSystem.Contracts.Loaders;
-using System.IO;
+﻿using Bytes2you.Validation;
+using DictionariesSystem.Contracts.Data;
+using DictionariesSystem.Contracts.Loaders;
+using DictionariesSystem.Models.Users;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.parser;
-using DictionariesSystem.Contracts.Data;
-using DictionariesSystem.Models.Users;
-using Bytes2you.Validation;
-using System.Linq;
-using System;
-using System.Drawing.Imaging;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace DictionariesSystem.Framework.Loaders
 {

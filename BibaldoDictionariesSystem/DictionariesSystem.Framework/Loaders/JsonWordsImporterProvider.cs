@@ -3,6 +3,9 @@ using DictionariesSystem.Contracts.Loaders;
 using DictionariesSystem.Models.Dictionaries;
 using DictionariesSystem.Contracts.Data;
 using Bytes2you.Validation;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DictionariesSystem.Framework.Loaders
 {
@@ -25,7 +28,24 @@ namespace DictionariesSystem.Framework.Loaders
 
         public void Import(string filePath, string dictionaryTitle)
         {
-            throw new NotImplementedException();
+            Guard.WhenArgument(filePath, "filePath").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(dictionaryTitle, "dictionaryTitle").IsNullOrEmpty().Throw();
+
+            var targetDictionary = this.dictionariesRepository
+                .All(x => x.Title == dictionaryTitle)
+                .FirstOrDefault();
+
+            Guard.WhenArgument(targetDictionary, "No Dictionary with such title was found!").IsNull().Throw();
+
+            var words = JsonConvert.DeserializeObject<IEnumerable<Word>>(filePath);
+
+            foreach (var word in words)
+            {
+                word.Dictionary = targetDictionary;
+                this.wordsRepository.Add(word);
+            }
+
+            this.unitOfWork.SaveChanges();
         }
     }
 }
