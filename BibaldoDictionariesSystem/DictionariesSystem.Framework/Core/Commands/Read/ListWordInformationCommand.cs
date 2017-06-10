@@ -13,18 +13,14 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
     {
         private const int NumberOfParameters = 2;
         private readonly IRepository<Dictionary> dictionaryRepository;
-        private readonly IUnitOfWork unitOfWork;
         private readonly IUserProvider user;
 
-        public ListWordInformationCommand(IRepository<Dictionary> dictionaryRepository,
-                                            IUnitOfWork unitOfWork, IUserProvider user)
+        public ListWordInformationCommand(IRepository<Dictionary> dictionaryRepository, IUserProvider user)
         {
             Guard.WhenArgument(dictionaryRepository, "dictionariyRepository").IsNull().Throw();
-            Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
             Guard.WhenArgument(user, "user").IsNull().Throw();
 
             this.dictionaryRepository = dictionaryRepository;
-            this.unitOfWork = unitOfWork;
             this.user = user;
         }
 
