@@ -24,7 +24,7 @@ namespace DictionariesSystem.Framework.Core.Providers
             string commandName = commandParameters[0];
             commandParameters.RemoveAt(0);
 
-            var command = this.commandFactory.CreateCommand(commandName);
+            var command = this.commandFactory.GetCommand(commandName);
             return command.Execute(commandParameters);
         }
     }

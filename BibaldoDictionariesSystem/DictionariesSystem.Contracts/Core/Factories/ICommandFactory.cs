@@ -4,6 +4,6 @@ namespace DictionariesSystem.Contracts.Core.Factories
 {
     public interface ICommandFactory
     {
-        ICommand CreateCommand(string commandName);
+        ICommand GetCommand(string commandName);
     }
 }

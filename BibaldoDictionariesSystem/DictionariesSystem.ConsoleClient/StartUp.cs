@@ -1,7 +1,7 @@
-using DictionariesSystem.Data.Dictionaries;
-using DictionariesSystem.Data.Logs;
-using DictionariesSystem.Data.Users;
-using System.Linq;
+using DictionariesSystem.ConsoleClient.Container;
+using DictionariesSystem.Contracts.Core.Commands;
+using Ninject;
+using System.Collections.Generic;
 
 namespace DictionariesSystem.ConsoleClient
 {
@@ -9,18 +9,23 @@ namespace DictionariesSystem.ConsoleClient
     {
         public static void Main()
         {
-            //var kernel = new StandardKernel(new DictionariesSystemModule());
+            var module = new DictionariesSystemModule();
+            var kernel = new StandardKernel(module);
             //var engine = kernel.Get<IEngine>();
             //engine.Start();
 
-            var loggingDbContext = new LogsDbContext();
-            loggingDbContext.ExceptionLogs.FirstOrDefault();
+            var command = kernel.Get<ICommand>(DictionariesSystemModule.GeneratePdfReportCommandName);
+            string result = command.Execute(new List<string>());
+            System.Console.WriteLine(result);
 
-            var dictionaryDbContext = new DictionariesDbContext();
-            dictionaryDbContext.Languages.FirstOrDefault();
+            //var loggingDbContext = new LogsDbContext();
+            //loggingDbContext.ExceptionLogs.FirstOrDefault();
 
-            var usersDbContext = new UsersDbContext();
-            usersDbContext.Users.FirstOrDefault();
+            //var dictionaryDbContext = new DictionariesDbContext();
+            //dictionaryDbContext.Languages.FirstOrDefault();
+
+            //var usersDbContext = new UsersDbContext();
+            //usersDbContext.Users.FirstOrDefault();
         }
     }
 }
