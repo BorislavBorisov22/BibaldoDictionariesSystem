@@ -19,8 +19,9 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope();
             this.Bind<IReader>().To<ConsoleReader>().InSingletonScope();
             this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
-
+            this.Bind<IUserProvider>().To<UserProvider>().InSingletonScope();
             this.Bind<IDateProvider>().To<DateProvider>();
+
             this.Bind<IDictionariesFactory>().To<DictionariesFactory>();
             this.Bind<ILogsFactory>().To<LogsFactory>();
             this.Bind<IUserFactory>().To<UserFactory>();

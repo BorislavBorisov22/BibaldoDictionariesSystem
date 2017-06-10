@@ -64,6 +64,7 @@
     <Compile Include="Core\Commands\Create\AddWordToDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Create\CreateDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Create\RegisterUserCommand.cs" />
+    <Compile Include="Core\Providers\UserProvider.cs" />
     <Compile Include="Loaders\XmlWordsImporterProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
