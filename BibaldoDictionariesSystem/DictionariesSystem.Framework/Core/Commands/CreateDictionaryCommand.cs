@@ -1,28 +1,50 @@
-﻿using DictionariesSystem.Contracts.Core.Commands;
+﻿using Bytes2you.Validation;
+using DictionariesSystem.Contracts.Core.Commands;
+using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Dictionaries;
 using System.Collections.Generic;
+using System;
 
 namespace DictionariesSystem.Framework.Core.Commands
 {
-    public class CreateDictionaryCommand : ICommand
+    public class CreateDictionaryCommand : BaseCommand, ICommand
     {
+        public const int NumberOfParameters = 2;
         private readonly IRepository<Dictionary> repository;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IUserProvider user;
 
-        public CreateDictionaryCommand(IRepository<Dictionary> repository, IUnitOfWork unitOfWork)
+        public CreateDictionaryCommand(IRepository<Dictionary> repository, IUnitOfWork unitOfWork, IUserProvider user)
         {
+            Guard.WhenArgument(repository, "repository").IsNull().Throw();
+            Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+            Guard.WhenArgument(user, "user").IsNull().Throw();
             this.repository = repository;
             this.unitOfWork = unitOfWork;
+            this.user = user;
         }
-        public string Execute(IList<string> parameters)
+
+        protected override int ParametersCount
         {
+            get
+            {
+                return NumberOfParameters;
+            }
+        }
+
+        public override string Execute(IList<string> parameters)
+        {
+            base.Execute(parameters);
+
+            Guard.WhenArgument(parameters.Count, "parameters").IsNotEqual(2).Throw();
+
             string title = parameters[0];
 
-            string author = parameters[1];
-        
-            string languageName = parameters[2];
+            string languageName = parameters[1];
 
+            string author = user.LoggedUser.Username;
+        
             Language language = new Language()
             {
                 Name = languageName
@@ -37,7 +59,9 @@ namespace DictionariesSystem.Framework.Core.Commands
 
             this.repository.Add(dictionary);
 
-            string result = $"A ne dictionary with title {title}, author {author} and language {languageName} was created.";
+            this.user.LoggedUser.ContributionsCount += 1;
+
+            string result = $"A new dictionary with title {title}, author {author} and language {languageName} was created.";
 
             return result;
         }
