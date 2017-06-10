@@ -35,13 +35,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
             string passHash = parameters[1];
 
             base.Execute(parameters);
-
-            //var foundUser = this.users.All(u => u.Username == username).FirstOrDefault();
-
-            //Guard.WhenArgument(foundUser, "foundUser").IsNull().Throw();
-
-            //Guard.WhenArgument(passHash, "passHash").IsNotEqual(foundUser.Passhash).Throw();
-
+     
             this.userProvider.Login(username, passHash);
 
             return $"User {username} has logged successfully.";
