@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Commands\Read\LoginUserCommand.cs" />
+    <Compile Include="Core\Commands\Update\ImportWordsFromCommand.cs" />
+    <Compile Include="Core\Commands\Update\UpdateWordCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\DictionariesFactory.cs" />
     <Compile Include="Core\Factories\LogsFactory.cs" />

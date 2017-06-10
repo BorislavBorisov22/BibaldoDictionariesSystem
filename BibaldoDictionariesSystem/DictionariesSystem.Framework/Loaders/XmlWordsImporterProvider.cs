@@ -4,6 +4,7 @@ using DictionariesSystem.Contracts.Loaders;
 using DictionariesSystem.Models.Dictionaries;
 using DictionariesSystem.Models.Dictionaries.Enums;
 using System;
+using System.Linq;
 using System.Xml;
 
 namespace DictionariesSystem.Framework.Loaders
@@ -11,44 +12,50 @@ namespace DictionariesSystem.Framework.Loaders
     public class XmlWordsImporterProvider : IWordsImporterProvider
     {
 
-        private readonly Dictionary targetDictionary;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IRepository<Dictionary> dictionariesRepository;
         private readonly IRepository<Word> wordsRepository;
 
-        public XmlWordsImporterProvider(IRepository<Word> wordsRepository, IUnitOfWork unitOfWork, Dictionary targetDictionary)
+        public XmlWordsImporterProvider(IRepository<Dictionary> dictionariesRepository, IRepository<Word> wordsRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(wordsRepository, "wordsRepostiory").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+            Guard.WhenArgument(dictionariesRepository, "dictionariesRepository");
 
+            this.dictionariesRepository = dictionariesRepository;
             this.unitOfWork = unitOfWork;
             this.wordsRepository = wordsRepository;
         }
 
-        public void Import(string filePath)
+        public void Import(string filePath, string dictionaryTitle)
         {
             Guard.WhenArgument(filePath, "filePath").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(dictionaryTitle, "dictionaryTitle").IsNullOrEmpty().Throw();
+
+            var targetDictionary = this.dictionariesRepository.All(x => x.Title == dictionaryTitle).FirstOrDefault();
+            Guard.WhenArgument(targetDictionary, "No dictionary with such title exists").IsNull().Throw();
 
             using (var xmlReader = XmlReader.Create(filePath))
             {
-                Word word = this.ReadSingleWord(xmlReader);
+                Word word = this.ReadSingleWord(xmlReader, targetDictionary);
                 while (word != null)
                 {
                     this.wordsRepository.Add(word);
 
-                    word = this.ReadSingleWord(xmlReader);
+                    word = this.ReadSingleWord(xmlReader, targetDictionary);
                 }
             }
 
             this.unitOfWork.SaveChanges();
         }
 
-        private Word ReadSingleWord(XmlReader xmlReader)
+        private Word ReadSingleWord(XmlReader xmlReader, Dictionary targetDictionary)
         {
             bool isNameRead = false;
             bool isMeaningRead = false;
             bool isSpeechPartRead = false;
 
-            Word word = new Word() { Dictionary = this.targetDictionary };
+            Word word = new Word() { Dictionary = targetDictionary };
             Meaning meaning = new Meaning();
 
             while ((!isNameRead || !isMeaningRead || !isSpeechPartRead) && xmlReader.Read())
