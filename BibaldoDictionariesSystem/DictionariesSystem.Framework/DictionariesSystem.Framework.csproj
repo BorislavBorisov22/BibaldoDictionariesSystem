@@ -49,7 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Commands\CreateDictionaryCommand.cs" />
+    <Compile Include="Core\Commands\BaseCommand.cs" />
+    <Compile Include="Core\Commands\Create\AddWordToDictionaryCommand.cs" />
+    <Compile Include="Core\Commands\Create\CreateDictionaryCommand.cs" />
+    <Compile Include="Core\Commands\Create\RegisterUserCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

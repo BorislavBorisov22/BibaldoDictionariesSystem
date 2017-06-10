@@ -6,7 +6,7 @@ using DictionariesSystem.Models.Dictionaries;
 using System.Collections.Generic;
 using System;
 
-namespace DictionariesSystem.Framework.Core.Commands
+namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class CreateDictionaryCommand : BaseCommand, ICommand
     {
