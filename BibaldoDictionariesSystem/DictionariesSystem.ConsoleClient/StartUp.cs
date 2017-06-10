@@ -8,7 +8,7 @@ namespace DictionariesSystem.ConsoleClient
     public class StartUp
     {
         public static void Main()
-        {
+        {    
             var loggingDbContext = new LogsDbContext();
             loggingDbContext.ExceptionLogs.FirstOrDefault();
 
