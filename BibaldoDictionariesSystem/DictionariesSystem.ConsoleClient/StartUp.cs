@@ -1,9 +1,6 @@
-using DictionariesSystem.ConsoleClient.Container;
-using DictionariesSystem.Contracts.Core;
 using DictionariesSystem.Data.Dictionaries;
 using DictionariesSystem.Data.Logs;
 using DictionariesSystem.Data.Users;
-using Ninject;
 using System.Linq;
 
 namespace DictionariesSystem.ConsoleClient

@@ -51,6 +51,7 @@
     <Compile Include="Core\Providers\IWriter.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
+    <Compile Include="Loaders\IPdfReporterProvider.cs" />
     <Compile Include="Loaders\IWordsImporterProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

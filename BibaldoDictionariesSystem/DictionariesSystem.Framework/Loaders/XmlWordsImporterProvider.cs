@@ -10,7 +10,6 @@ namespace DictionariesSystem.Framework.Loaders
 {
     public class XmlWordsImporterProvider : IWordsImporterProvider
     {
-
         private readonly Dictionary targetDictionary;
         private readonly IUnitOfWork unitOfWork;
         private readonly IRepository<Word> wordsRepository;
@@ -19,9 +18,11 @@ namespace DictionariesSystem.Framework.Loaders
         {
             Guard.WhenArgument(wordsRepository, "wordsRepostiory").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+            Guard.WhenArgument(targetDictionary, "targetDictionary").IsNull().Throw();
 
             this.unitOfWork = unitOfWork;
             this.wordsRepository = wordsRepository;
+            this.targetDictionary = targetDictionary;
         }
 
         public void Import(string filePath)
