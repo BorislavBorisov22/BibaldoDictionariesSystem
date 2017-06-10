@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Commands\CreateDictionaryCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,9 +61,12 @@
       <Project>{ebd8272b-9914-48eb-89ea-072f2528c474}</Project>
       <Name>DictionariesSystem.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DictionariesSystem.Models\DictionariesSystem.Models.csproj">
+      <Project>{928437ED-8A5E-4257-B685-7C92E44D49D8}</Project>
+      <Name>DictionariesSystem.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Commands\" />
     <Folder Include="Core\Providers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
