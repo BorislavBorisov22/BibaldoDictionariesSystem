@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace DictionariesSystem.Framework.Core.Commands.Update
 {
-    public class ImportWordsFromCommand : BaseCommand, ICommand
+    public class ImportWordsFromFileCommand : BaseCommand, ICommand
     {
         private const int NumberOfParameters = 2;
 
         private readonly IWordsImporterFactory wordsImporterFactory;
 
-        public ImportWordsFromCommand(IWordsImporterFactory wordsImporterFactory)
+        public ImportWordsFromFileCommand(IWordsImporterFactory wordsImporterFactory)
         {
             Guard.WhenArgument(wordsImporterFactory, "wordsImporterFactory").IsNull().Throw();
 

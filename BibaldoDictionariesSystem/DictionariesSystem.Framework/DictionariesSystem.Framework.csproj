@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Commands\Read\GeneratePdfReportCommand.cs" />
     <Compile Include="Core\Commands\Read\ListDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Read\ListWordInformationCommand.cs" />
     <Compile Include="Core\Commands\Read\LoginUserCommand.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="Core\Commands\Create\AddWordToDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Create\CreateDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Create\RegisterUserCommand.cs" />
-    <Compile Include="Core\Commands\Update\ImportWordsFromCommand.cs" />
+    <Compile Include="Core\Commands\Update\ImportWordsFromFileCommand.cs" />
     <Compile Include="Loaders\JsonWordsImporterProvider.cs" />
     <Compile Include="Loaders\PdfReporterProvider.cs" />
     <Compile Include="Loaders\XmlWordsImporterProvider.cs" />
