@@ -11,10 +11,11 @@ namespace DictionariesSystem.Framework.Loaders
     public class XmlWordsImporterProvider : IWordsImporterProvider
     {
 
+        private readonly Dictionary targetDictionary;
         private readonly IUnitOfWork unitOfWork;
         private readonly IRepository<Word> wordsRepository;
 
-        public XmlWordsImporterProvider(IRepository<Word> wordsRepository, IUnitOfWork unitOfWork)
+        public XmlWordsImporterProvider(IRepository<Word> wordsRepository, IUnitOfWork unitOfWork, Dictionary targetDictionary)
         {
             Guard.WhenArgument(wordsRepository, "wordsRepostiory").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
@@ -47,7 +48,7 @@ namespace DictionariesSystem.Framework.Loaders
             bool isMeaningRead = false;
             bool isSpeechPartRead = false;
 
-            Word word = new Word();
+            Word word = new Word() { Dictionary = this.targetDictionary };
             Meaning meaning = new Meaning();
 
             while ((!isNameRead || !isMeaningRead || !isSpeechPartRead) && xmlReader.Read())
