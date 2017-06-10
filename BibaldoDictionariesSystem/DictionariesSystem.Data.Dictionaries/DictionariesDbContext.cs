@@ -1,4 +1,5 @@
-﻿using DictionariesSystem.Models.Dictionaries;
+﻿using DictionariesSystem.Data.Dictionaries.Migrations;
+using DictionariesSystem.Models.Dictionaries;
 using System.Data.Entity;
 
 namespace DictionariesSystem.Data.Dictionaries
@@ -10,6 +11,7 @@ namespace DictionariesSystem.Data.Dictionaries
         public DictionariesDbContext()
             : base(ConnectionStringName)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DictionariesDbContext, Configuration>());
         }
 
         public virtual IDbSet<Dictionary> Dictionaries  { get; set; }

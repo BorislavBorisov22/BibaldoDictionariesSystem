@@ -8,11 +8,12 @@ using System.Linq;
 namespace DictionariesSystem.Data.Users.Migrations
 {
 
-    internal sealed class Configuration : DbMigrationsConfiguration<UsersDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<UsersDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(UsersDbContext context)

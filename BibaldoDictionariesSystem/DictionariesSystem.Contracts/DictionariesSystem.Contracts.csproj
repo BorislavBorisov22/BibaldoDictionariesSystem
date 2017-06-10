@@ -47,11 +47,17 @@
     <Compile Include="Core\Providers\IDateProvider.cs" />
     <Compile Include="Core\Providers\ILogger.cs" />
     <Compile Include="Core\Providers\IReader.cs" />
+    <Compile Include="Core\Providers\IUserProvider.cs" />
     <Compile Include="Core\Providers\IWriter.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DictionariesSystem.Models\DictionariesSystem.Models.csproj">
+      <Project>{928437ed-8a5e-4257-b685-7c92e44d49d8}</Project>
+      <Name>DictionariesSystem.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

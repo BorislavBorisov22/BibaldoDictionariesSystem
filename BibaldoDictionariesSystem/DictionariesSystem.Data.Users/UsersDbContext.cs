@@ -1,4 +1,5 @@
-﻿using DictionariesSystem.Models.Users;
+﻿using DictionariesSystem.Data.Users.Migrations;
+using DictionariesSystem.Models.Users;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Annotations;
@@ -12,6 +13,7 @@ namespace DictionariesSystem.Data.Users
         public UsersDbContext()
             : base(ConnectionStringName)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UsersDbContext, Configuration>());
         }
 
         public virtual IDbSet<User> Users { get; set; }
