@@ -2,11 +2,16 @@
 {
     public enum UserAction
     {
-        UpdateWord = 0,
-        AddWord = 1,
-        DeleteWord = 2,
-        Login = 3,
-        Register = 4,
-        Logout = 5
+        AddDictionary = 0,
+        ReadDictionary = 1,
+        DeleteDictionary = 2,
+        AddWord = 3,
+        ReadWord = 4,
+        UpdateWord = 5,
+        DeleteWord = 6,
+        ShowBadges = 7,
+        Login = 8,
+        Register = 9,
+        Logout = 10
     }
 }

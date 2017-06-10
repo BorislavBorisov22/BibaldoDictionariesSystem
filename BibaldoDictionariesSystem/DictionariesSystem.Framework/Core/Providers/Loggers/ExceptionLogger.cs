@@ -20,7 +20,7 @@ namespace DictionariesSystem.Framework.Core.Providers.Loggers
             this.unitOfWork = unitOfWork;
         }
 
-        public void Log(string message)
+        public void Log(string message, string state = null)
         {
             this.repository.Add(new ExceptionLog() { Message = message, LoggedOn = DateProvider.Provider.GetDate() });
             this.unitOfWork.SaveChanges();
