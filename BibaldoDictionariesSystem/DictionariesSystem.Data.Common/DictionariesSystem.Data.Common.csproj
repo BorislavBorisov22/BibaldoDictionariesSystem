@@ -47,8 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repository.cs" />
+    <Compile Include="EntityFrameworkRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DictionariesSystem.Contracts\DictionariesSystem.Contracts.csproj">
