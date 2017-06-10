@@ -1,15 +1,9 @@
-﻿using System;
-using Ninject.Modules;
+﻿using DictionariesSystem.Contracts.Core;
 using DictionariesSystem.Contracts.Core.Providers;
-using DictionariesSystem.Contracts.Data;
-using DictionariesSystem.Data.Common;
-using DictionariesSystem.Models.Logs;
-using DictionariesSystem.Contracts.Core;
 using DictionariesSystem.Framework.Core;
-using DictionariesSystem.Framework.Core.Providers.Loggers;
 using DictionariesSystem.Framework.Core.Providers;
-using DictionariesSystem.Contracts.Core.Factories;
-using Ninject.Extensions.Factory;
+using DictionariesSystem.Framework.Core.Providers.Loggers;
+using Ninject.Modules;
 
 namespace DictionariesSystem.ConsoleClient.Container
 {
@@ -21,8 +15,8 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>();
             this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope();
-            this.Bind<IReader>().To<ConsoleReader>();
-            this.Bind<IWriter>().To<ConsoleWriter>();
+            this.Bind<IReader>().To<ConsoleReader>().InSingletonScope();
+            this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
 
             this.Bind<IDateProvider>().To<DateProvider>();
 

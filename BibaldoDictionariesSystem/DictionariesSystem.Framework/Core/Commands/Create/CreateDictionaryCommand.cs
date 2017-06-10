@@ -10,7 +10,8 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class CreateDictionaryCommand : BaseCommand, ICommand
     {
-        public const int NumberOfParameters = 2;
+        private const int NumberOfParameters = 2;
+
         private readonly IRepository<Dictionary> repository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IUserProvider user;
