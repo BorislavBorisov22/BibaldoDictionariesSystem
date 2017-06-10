@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using DictionariesSystem.Contracts.Core.Commands;
+using DictionariesSystem.Contracts.Core.Factories;
 using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Dictionaries;
@@ -14,21 +15,26 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class AddWordToDictionaryCommand : BaseCommand, ICommand
     {
-        public const int NumberOfParameters = 2;
+        private  const int NumberOfParameters = 2;
+
         private readonly IRepository<Dictionary> dictionaries;
         private readonly IUnitOfWork unitOfWork;
         private readonly IUserProvider user;
+        private readonly IDictionariesFactory dictionariesFactory;
 
-        public AddWordToDictionaryCommand(IRepository<Dictionary> dictionaries, IUnitOfWork unitOfWork, IUserProvider user)
+        public AddWordToDictionaryCommand(IRepository<Dictionary> dictionaries, IUnitOfWork unitOfWork, IUserProvider user, IDictionariesFactory dictionariesFactory)
         {
             Guard.WhenArgument(dictionaries, "dictionaries").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
             Guard.WhenArgument(user, "user").IsNull().Throw();
+            Guard.WhenArgument(dictionariesFactory, "dictionariesFactory").IsNull().Throw();
 
             this.dictionaries = dictionaries;
             this.unitOfWork = unitOfWork;
             this.user = user;
+            this.dictionariesFactory = dictionariesFactory;
         }
+
         protected override int ParametersCount
         {
             get
@@ -40,59 +46,30 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
         public override string Execute(IList<string> parameters)
         {
             string wordName = parameters[0];
-
             string dictionaryTitle = parameters[1];
-
-            StringBuilder description = new StringBuilder();
-
-            for (int i = 2; i < parameters.Count; i += 1)
-            {
-                if (i != ParametersCount - 1)
-                {
-                    description.Append(parameters[i] + ' ');
-                }
-                else
-                {
-                    description.Append(parameters[i]);
-                }
-            }
-
+            string speechPart = parameters[2];
+            string wordDescription = string.Join(" ", parameters.Skip(3));
+           
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
-
-            Guard.WhenArgument(dictionary, "dictionary").IsNull().Throw();
+            Guard.WhenArgument(dictionary, "No Such Dictionary in the system").IsNull().Throw();
 
             var foundWord = dictionary.Words.FirstOrDefault(w => w.Name == wordName);
+            Guard.WhenArgument(foundWord, "Word Already exists").IsNotNull().Throw();
 
-            Guard.WhenArgument(foundWord, "foundWord").IsNotNull().Throw();
+            Meaning wordMeaning = dictionary.Meanings.FirstOrDefault(m => m.Description == wordDescription);
 
-            var foundMeaning = dictionary.Meanings.FirstOrDefault(m => m.Description == description.ToString());
-
-            Word newWord = new Word()
+            if (wordDescription == null)
             {
-                Name = wordName,
-                Dictionary = dictionary,
-                DictionaryId = dictionary.Id
-            };
-
-            if (foundMeaning == null)
-            {
-                var meaning = new Meaning()
-                {
-                    Description = description.ToString()
-                };
-                newWord.Meanings.Add(meaning);
-            }
-            else
-            {
-                newWord.Meanings.Add(foundMeaning);
+                wordMeaning = this.dictionariesFactory.GetMeaning(wordDescription);
             }
 
+            Word newWord = this.dictionariesFactory.GetWord(wordName, speechPart);
+            newWord.Meanings.Add(wordMeaning);
             dictionary.Words.Add(newWord);
 
             this.unitOfWork.SaveChanges();
 
-            string result = $"A new word: {wordName} was added into dictionary: {dictionaryTitle}\n{wordName} means {description}";
-
+            string result = $"A new word: {wordName} was added into dictionary: {dictionaryTitle}\n{wordName} means {wordDescription}";
             return result;
         }
     }
