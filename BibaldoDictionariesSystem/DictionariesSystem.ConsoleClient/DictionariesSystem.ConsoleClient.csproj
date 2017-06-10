@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Container\DictionariesSystemModule.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,6 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DictionariesSystem.Contracts\DictionariesSystem.Contracts.csproj">
+      <Project>{ebd8272b-9914-48eb-89ea-072f2528c474}</Project>
+      <Name>DictionariesSystem.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Data.Dictionaries\DictionariesSystem.Data.Dictionaries.csproj">
       <Project>{85DA9748-C30C-4EB6-83A5-9B36158E4E1C}</Project>
       <Name>DictionariesSystem.Data.Dictionaries</Name>
@@ -115,7 +120,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Container\" />
+    <Folder Include="Interceptors\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.1\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.1\build\net451\System.Data.SQLite.Core.targets')" />

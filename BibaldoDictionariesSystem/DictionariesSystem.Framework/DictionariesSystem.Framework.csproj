@@ -54,5 +54,14 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DictionariesSystem.Contracts\DictionariesSystem.Contracts.csproj">
+      <Project>{ebd8272b-9914-48eb-89ea-072f2528c474}</Project>
+      <Name>DictionariesSystem.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Providers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
