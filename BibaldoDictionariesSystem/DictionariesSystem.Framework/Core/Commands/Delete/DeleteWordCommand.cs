@@ -9,22 +9,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DictionariesSystem.Framework.Core.Commands.Read
+namespace DictionariesSystem.Framework.Core.Commands.Delete
 {
-    public class ListDictionaryCommand : BaseCommand, ICommand
+    public class DeleteWordCommand : BaseCommand, ICommand
     {
         private const int NumberOfParameters = 2;
         private readonly IRepository<Dictionary> dictionaries;
-        private readonly IUserProvider user;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ListDictionaryCommand(IRepository<Dictionary> dictionaries,
-                                    IUserProvider user)
+        public DeleteWordCommand(IRepository<Dictionary> dictionaries, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(dictionaries, "dictionaries").IsNull().Throw();
-            Guard.WhenArgument(user, "user").IsNull().Throw();
+            Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
 
             this.dictionaries = dictionaries;
-            this.user = user;
+            this.unitOfWork = unitOfWork;
         }
 
         protected override int ParametersCount
@@ -41,18 +40,23 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
 
             string dictionaryTitle = parameters[0];
 
+            string wordName = parameters[1];
+
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
 
-            Guard.WhenArgument(dictionary, "No dictionary with this name").IsNull().Throw();
+            Guard.WhenArgument(dictionary, "No dictionary with this name.").IsNull().Throw();
 
-            StringBuilder words = new StringBuilder();
+            var word = dictionary.Words.FirstOrDefault(w => w.Name == wordName);
 
-            foreach (Word word in dictionary.Words)
-            {
-                words.AppendLine($"{word.Name} : {string.Join(", ", word.Meanings)}");
-            }
+            Guard.WhenArgument(word, "No word with this name.").IsNull().Throw();
 
-            return words.ToString();
+            dictionary.Words.Remove(word);
+
+            this.unitOfWork.SaveChanges();
+
+            var result = $"Deleted word: {word.Name} from dictionary: {dictionary.Title}";
+
+            return result;
         }
     }
 }
