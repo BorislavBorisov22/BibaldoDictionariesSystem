@@ -1,11 +1,7 @@
 ﻿using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Dictionaries;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DictionariesSystem.Framework.Core.Commands
 {
@@ -14,7 +10,7 @@ namespace DictionariesSystem.Framework.Core.Commands
         private readonly IRepository<Dictionary> repository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CreateDictionaryCommand(IRepository<Dictionary> repository,IUnitOfWork unitOfWork)
+        public CreateDictionaryCommand(IRepository<Dictionary> repository, IUnitOfWork unitOfWork)
         {
             this.repository = repository;
             this.unitOfWork = unitOfWork;

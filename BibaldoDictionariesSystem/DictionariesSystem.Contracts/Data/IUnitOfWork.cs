@@ -1,6 +1,8 @@
-﻿namespace DictionariesSystem.Contracts.Data
+﻿using System;
+
+namespace DictionariesSystem.Contracts.Data
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         void SaveChanges();
     }

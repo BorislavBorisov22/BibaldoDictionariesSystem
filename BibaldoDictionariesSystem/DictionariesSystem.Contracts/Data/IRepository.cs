@@ -14,5 +14,7 @@ namespace DictionariesSystem.Contracts.Data
         void Add(T entity);
 
         void Delete(T entity);
+
+        void Update(T entity);
     }
 }

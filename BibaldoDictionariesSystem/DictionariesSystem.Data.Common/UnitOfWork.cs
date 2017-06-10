@@ -1,5 +1,4 @@
 ﻿using DictionariesSystem.Contracts.Data;
-using System;
 using System.Data.Entity;
 
 namespace DictionariesSystem.Data.Common
@@ -11,6 +10,10 @@ namespace DictionariesSystem.Data.Common
         public UnitOfWork(DbContext context)
         {
             this.dbContext = context;
+        }
+
+        public void Dispose()
+        {
         }
 
         public void SaveChanges()
