@@ -1,4 +1,5 @@
-﻿using DictionariesSystem.Contracts.Core;
+﻿using DictionariesSystem.ConsoleClient.Interceptors;
+using DictionariesSystem.Contracts.Core;
 using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Core.Factories;
 using DictionariesSystem.Contracts.Core.Providers;
@@ -9,6 +10,7 @@ using DictionariesSystem.Data.Dictionaries;
 using DictionariesSystem.Data.Logs;
 using DictionariesSystem.Data.Users;
 using DictionariesSystem.Framework.Core;
+using DictionariesSystem.Framework.Core.Commands.Common;
 using DictionariesSystem.Framework.Core.Commands.Create;
 using DictionariesSystem.Framework.Core.Commands.Delete;
 using DictionariesSystem.Framework.Core.Commands.Read;
@@ -22,6 +24,7 @@ using DictionariesSystem.Models.Logs;
 using DictionariesSystem.Models.Users;
 using Ninject;
 using Ninject.Extensions.Factory;
+using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 using Ninject.Parameters;
 using System.Collections.Generic;
@@ -38,10 +41,6 @@ namespace DictionariesSystem.ConsoleClient.Container
 
         private const string JsonWordsImporterName = "json";
         private const string XmlWordsImporterName = "xml";
-
-        private const string LogsUnitOfWorkName = "LogsUnitOfWork";
-        private const string UsersUnitOfWorkName = "UsersUnitOfWork";
-        private const string DictionariesUnitOfWorkName = "DictionariesUnitOfWork";
 
         // create
         public const string CreateDictionaryCommandName = "CreateDictionary";
@@ -62,6 +61,9 @@ namespace DictionariesSystem.ConsoleClient.Container
         // update
         public const string UpdateWordCommandName = "UpdateWord";
         public const string ImportWordsFromFileCommandName = "ImportWords";
+
+        // common
+        public const string LogoutUserCommandName = "Logout";
 
         public override void Load()
         {
@@ -166,7 +168,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
 
             // read
-            this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName);
+            this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName).Intercept().With<UserAuthenticatorInterceptor>();
             this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
             this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
             this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);
@@ -175,6 +177,9 @@ namespace DictionariesSystem.ConsoleClient.Container
             // update
             this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);
             this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
+
+            // common
+            this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
         }
     }
 }

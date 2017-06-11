@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container\DictionariesSystemModule.cs" />
+    <Compile Include="Interceptors\UserAuthenticatorInterceptor.cs" />
     <Compile Include="Interceptors\UserLoggerInterceptor.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
