@@ -45,8 +45,8 @@ namespace DictionariesSystem.Framework.Core
                 }
                 catch (Exception ex)
                 {
-                    this.logger.Log(ex.Message);
-                    this.writer.WriteLine(InvalidCommandMessage);
+                    //this.logger.Log(ex.Message);
+                    this.writer.WriteLine(ex.Message);
                 }
             }
         }

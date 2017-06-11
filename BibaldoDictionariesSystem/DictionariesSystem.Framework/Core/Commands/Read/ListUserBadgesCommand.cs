@@ -14,14 +14,11 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
     public class ListUserBadgesCommand : BaseCommand, ICommand
     {
         private const int NumberOfParameters = 0;
-        private readonly IUnitOfWork unitOfWork;
         private readonly IUserProvider userProvider;
-        public ListUserBadgesCommand(IUnitOfWork unitOfWork, IUserProvider userProvider)
+        public ListUserBadgesCommand(IUserProvider userProvider)
         {
-            Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
             Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
-
-            this.unitOfWork = unitOfWork;
+            
             this.userProvider = userProvider;
         }
 
