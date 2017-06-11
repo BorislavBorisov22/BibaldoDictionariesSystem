@@ -59,7 +59,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 
             Meaning wordMeaning = dictionary.Meanings.FirstOrDefault(m => m.Description == wordDescription);
 
-            if (wordDescription == null)
+            if (wordMeaning == null)
             {
                 wordMeaning = this.dictionariesFactory.GetMeaning(wordDescription);
             }

@@ -55,7 +55,7 @@ namespace DictionariesSystem.ConsoleClient.Container
         // read
         public const string ListDictionaryCommandName = "ListDictionary";
         public const string ListWordInformationCommandName = "ListWordInformation";
-        public const string ListUserBadgesCommandName = "ShowBadges"; //
+        public const string ListUserBadgesCommandName = "ListBadges"; //
         public const string GeneratePdfReportCommandName = "GenerateUsersReport"; //
         public const string LoginUserCommandName = "Login"; //
 
@@ -163,7 +163,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             // create
             var createDictionaryBinding = this.Bind<ICommand>().To<CreateDictionaryCommand>().Named(CreateDictionaryCommandName);
             var addWordToDictionaryBinding = this.Bind<ICommand>().To<AddWordToDictionaryCommand>().Named(AddWordToDictionaryCommandName);
-            var registerUserBinding = this.Bind<ICommand>().To<RegisterUserCommand>().Named(RegisterUserCommandName);
+            var registerUserBinding = this.Bind<ICommand>().To<RegisterCommand>().Named(RegisterUserCommandName);
 
             // delete
             var deleteDictionaryBinding = this.Bind<ICommand>().To<DeleteDictionaryCommand>().Named(DeleteDictionaryCommandName);
@@ -173,8 +173,8 @@ namespace DictionariesSystem.ConsoleClient.Container
             var generateReportBinding = this.Bind<ICommand>().To<GenerateUsersReportCommand>().Named(GeneratePdfReportCommandName);
             var listWordInfoBinding = this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
             var listDictionaryBinding = this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
-            var listBadgesBinding = this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);
-            var loginUserBinding = this.Bind<ICommand>().To<LoginUserCommand>().Named(LoginUserCommandName);
+            var listBadgesBinding = this.Bind<ICommand>().To<ListBadgesCommand>().Named(ListUserBadgesCommandName);
+            var loginUserBinding = this.Bind<ICommand>().To<LoginCommand>().Named(LoginUserCommandName);
 
             // update
             var updateWordBinding = this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);

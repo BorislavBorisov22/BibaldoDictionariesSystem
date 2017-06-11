@@ -55,7 +55,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
                 wordInformation.AppendLine($"{word.Name} comes from {word.RootWord}");
             }
 
-            wordInformation.AppendLine($"{word.Name} means {string.Join(" also ", word.Meanings)}");
+            wordInformation.AppendLine($"{word.Name} means {string.Join("; ", word.Meanings.Select(x => x.Description))}");
 
             return wordInformation.ToString();
         }

@@ -40,9 +40,10 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
             Guard.WhenArgument(dictionary, "No dictionary with this name").IsNull().Throw();
 
             StringBuilder words = new StringBuilder();
+
             foreach (Word word in dictionary.Words)
             {
-                words.AppendLine($"{word.Name} : {string.Join(", ", word.Meanings)}");
+                words.AppendLine($"{word.Name} : {string.Join(", ", word.Meanings.Select(x => x.Description))}");
             }
 
             return words.ToString();
