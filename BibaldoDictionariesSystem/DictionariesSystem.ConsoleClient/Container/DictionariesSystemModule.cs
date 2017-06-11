@@ -116,10 +116,10 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             // engine and engine depndencies
             this.Bind<IEngine>().To<Engine>().InSingletonScope();
-            this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope();
+            this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope().Intercept().With<CommandProcessorInterceptor>();
             this.Bind<IReader>().To<ConsoleReader>().InSingletonScope();
             this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
-            this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>();
+            this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>().InSingletonScope();
 
             this.Bind<IDateProvider>().To<DateProvider>().InSingletonScope();
             this.Bind<IUserProvider>().To<UserProvider>().InSingletonScope();
@@ -195,7 +195,7 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             if (!configurationProvider.IsTestEnvironment())
             {
-                // interceptions
+                // command interceptions
                 // create
                 createDictionaryBinding.Intercept().With<UserAuthenticatorInterceptor>();
                 createDictionaryBinding.Intercept().With<UserLoggerInterceptor>();
