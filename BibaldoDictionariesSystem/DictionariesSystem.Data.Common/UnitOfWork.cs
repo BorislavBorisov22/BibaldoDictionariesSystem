@@ -1,15 +1,19 @@
-﻿using DictionariesSystem.Contracts.Data;
+﻿using Bytes2you.Validation;
+using DictionariesSystem.Contracts.Data;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace DictionariesSystem.Data.Common
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext dbContext;
+        private readonly IEnumerable<DbContext> contexts;
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(IEnumerable<DbContext> contexts)
         {
-            this.dbContext = context;
+            Guard.WhenArgument(contexts, "contexts").IsNull().Throw();
+
+            this.contexts = contexts;
         }
 
         public void Dispose()
@@ -18,7 +22,10 @@ namespace DictionariesSystem.Data.Common
 
         public void SaveChanges()
         {
-            this.dbContext.SaveChanges();
+            foreach (var context in this.contexts)
+            {
+                context.SaveChanges();
+            }
         }
     }
 }

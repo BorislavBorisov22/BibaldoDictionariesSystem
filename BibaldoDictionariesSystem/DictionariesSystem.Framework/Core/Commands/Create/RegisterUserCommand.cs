@@ -38,9 +38,9 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             string username = parameters[0];
             string password = parameters[1];
 
-            this.userProvider.Login(username, password);
+            this.userProvider.Register(username, password);
 
-            string restult = $"A new user with username: {username} was created and logged in.";
+            string restult = $"A new user with username: {username} was created!";
 
             return restult;
         }

@@ -8,9 +8,9 @@ namespace DictionariesSystem.ConsoleClient
     {
         public static void Main()
         {
-   //var dictionaryDbContext = new DictionariesDbContext();
-            //dictionaryDbContext.Dictionaries.Add(new Dictionary() { Title = "Roskata", Author = "Pak Roskata", Language = new Language() { Name = "Mandarin" }, CreatedOn = DateTime.Now });
-            //dictionaryDbContext.SaveChanges();
+             //var dictionaryDbContext = new DictionariesDbContext();
+             //dictionaryDbContext.Dictionaries.Add(new Dictionary() { Title = "Roskata", Author = "Pak Roskata", Language = new Language() { Name = "Mandarin" }, CreatedOn = DateTime.Now });
+             //dictionaryDbContext.SaveChanges();
 
             var module = new DictionariesSystemModule();
             var kernel = new StandardKernel(module);

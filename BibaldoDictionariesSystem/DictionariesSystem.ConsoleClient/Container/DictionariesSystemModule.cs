@@ -32,6 +32,10 @@ namespace DictionariesSystem.ConsoleClient.Container
 {
     public class DictionariesSystemModule : NinjectModule
     {
+        private const string UsersDbContextName = "UsersDbContext";
+        private const string LogsDbContextName = "LogsDbContext";
+        private const string DictionariesDbContextName = "DictionariesDbContext";
+
         private const string JsonWordsImporterName = "json";
         private const string XmlWordsImporterName = "xml";
 
@@ -62,77 +66,63 @@ namespace DictionariesSystem.ConsoleClient.Container
         public override void Load()
         {
             // contexts
-            this.Bind<LogsDbContext>().ToSelf().InSingletonScope();
-            this.Bind<UsersDbContext>().ToSelf().InSingletonScope();
-            this.Bind<DictionariesDbContext>().ToSelf().InSingletonScope();
+            this.Bind<DbContext>().To<LogsDbContext>().InSingletonScope().Named(LogsDbContextName);
+            this.Bind<DbContext>().To<UsersDbContext>().InSingletonScope().Named(UsersDbContextName);
+            this.Bind<DbContext>().To<DictionariesDbContext>().InSingletonScope().Named(DictionariesDbContextName);
 
             // units of work depending on context
-            this.Bind<IUnitOfWork>().To<UnitOfWork>()
-                .InSingletonScope().Named(LogsUnitOfWorkName)
-                .WithConstructorArgument("context", this.Kernel.Get<LogsDbContext>());
-
-            this.Bind<IUnitOfWork>().To<UnitOfWork>()
-                .InSingletonScope().Named(UsersUnitOfWorkName)
-                .WithConstructorArgument("context", this.Kernel.Get<UsersDbContext>());
-
-            this.Bind<IUnitOfWork>().To<UnitOfWork>()
-                .InSingletonScope().Named(DictionariesUnitOfWorkName)
-                .WithConstructorArgument("context", this.Kernel.Get<DictionariesDbContext>());
+            this.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
 
             // repositories
             // from users db context
             this.Bind<IRepository<User>>().To<Repository<User>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<UsersDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(UsersDbContextName));
 
             this.Bind<IRepository<Badge>>().To<Repository<Badge>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<UsersDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(UsersDbContextName));
 
             // from logs db context
             this.Bind<IRepository<ExceptionLog>>().To<Repository<ExceptionLog>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<LogsDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(LogsDbContextName));
 
             this.Bind<IRepository<UserLog>>().To<Repository<UserLog>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<LogsDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(UsersDbContextName));
 
             // from dictionaries db context
             this.Bind<IRepository<Word>>().To<Repository<Word>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<DictionariesDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(DictionariesDbContextName));
 
             this.Bind<IRepository<Dictionary>>().To<Repository<Dictionary>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<DictionariesDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(DictionariesDbContextName));
 
             this.Bind<IRepository<Language>>().To<Repository<Language>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<DictionariesDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(DictionariesDbContextName));
 
             this.Bind<IRepository<Meaning>>().To<Repository<Meaning>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<DictionariesDbContext>());
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(DictionariesDbContextName));
 
             // engine and engine depndencies
             this.Bind<IEngine>().To<Engine>().InSingletonScope();
             this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope();
             this.Bind<IReader>().To<ConsoleReader>().InSingletonScope();
             this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
-            this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>()
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(LogsUnitOfWorkName));
+            this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>();
 
             this.Bind<IDateProvider>().To<DateProvider>().InSingletonScope();
-            this.Bind<IUserProvider>().To<UserProvider>().InSingletonScope()
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(UsersUnitOfWorkName));
+            this.Bind<IUserProvider>().To<UserProvider>().InSingletonScope();
 
             // importers and reporters
-            this.Bind<IWordsImporterProvider>().To<XmlWordsImporterProvider>().Named(XmlWordsImporterName)
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(DictionariesUnitOfWorkName));
+            this.Bind<IWordsImporterProvider>().To<XmlWordsImporterProvider>().Named(XmlWordsImporterName);
 
-            this.Bind<IWordsImporterProvider>().To<JsonWordsImporterProvider>().Named(JsonWordsImporterName)
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(DictionariesUnitOfWorkName));
+            this.Bind<IWordsImporterProvider>().To<JsonWordsImporterProvider>().Named(JsonWordsImporterName);
 
             this.Bind<IPdfReporterProvider>().To<PdfReporterProvider>();
 
@@ -163,25 +153,20 @@ namespace DictionariesSystem.ConsoleClient.Container
 
                 return importer;
             })
-            .InSingletonScope()
             .NamedLikeFactoryMethod((ICommandFactory factory) => factory.GetCommand(null));
 
             // commands
             // create
-            this.Bind<ICommand>().To<CreateDictionaryCommand>().Named(CreateDictionaryCommandName)
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(DictionariesUnitOfWorkName));
+            this.Bind<ICommand>().To<CreateDictionaryCommand>().Named(CreateDictionaryCommandName);
 
-            this.Bind<ICommand>().To<AddWordToDictionaryCommand>().Named(AddWordToDictionaryCommandName)
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(DictionariesUnitOfWorkName));
+            this.Bind<ICommand>().To<AddWordToDictionaryCommand>().Named(AddWordToDictionaryCommandName);
 
             this.Bind<ICommand>().To<RegisterUserCommand>().Named(RegisterUserCommandName);
 
             // delete
-            this.Bind<ICommand>().To<DeleteDictionaryCommand>().Named(DeleteDictionaryCommandName)
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(DictionariesUnitOfWorkName));
+            this.Bind<ICommand>().To<DeleteDictionaryCommand>().Named(DeleteDictionaryCommandName);
 
-            this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName)
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(DictionariesUnitOfWorkName));
+            this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
 
             // read
             this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName);
@@ -191,8 +176,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<ICommand>().To<LoginUserCommand>().Named(LoginUserCommandName);
 
             // update
-            this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName)
-                .WithConstructorArgument("unitOfWork", this.Kernel.Get<IUnitOfWork>(DictionariesUnitOfWorkName));
+            this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);
 
             this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
         }
