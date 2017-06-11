@@ -13,9 +13,13 @@ namespace DictionariesSystem.ConsoleClient.Interceptors
             {
                 invocation.Proceed();
             }
-            catch (ActivationException ex)
+            catch (UserAuthenticationException ex)
             {
-
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
                 throw new InvalidCommandException(ex.Message, ex);
             }
         }

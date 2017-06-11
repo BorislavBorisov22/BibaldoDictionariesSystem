@@ -54,18 +54,17 @@ namespace DictionariesSystem.ConsoleClient.Container
         // read
         public const string ListDictionaryCommandName = "ListDictionary";
         public const string ListWordInformationCommandName = "ListWordInformation";
-
-        public const string ListUserBadgesCommandName = "ShowBadges";
-        public const string GeneratePdfReportCommandName = "GenerateUsersReport";
+        public const string ListUserBadgesCommandName = "ListBadges";
 
         // update
         public const string UpdateWordCommandName = "UpdateWord";
         public const string ImportWordsFromFileCommandName = "ImportWordsFromFile";
 
         // common
+        public const string GeneratePdfReportCommandName = "GenerateUsersReport";
         public const string RegisterUserCommandName = "Register";
         public const string LoginUserCommandName = "Login";
-        public const string LogoutUserCommandName = "Logout";
+        public const string LogoutCommandName = "Logout";
         public const string ClearCommandName = "Clear";
         public const string HelpCommandName = "--help";
 
@@ -127,9 +126,7 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             // importers and reporters
             this.Bind<IWordsImporterProvider>().To<XmlWordsImporterProvider>().Named(XmlWordsImporterName);
-
             this.Bind<IWordsImporterProvider>().To<JsonWordsImporterProvider>().Named(JsonWordsImporterName);
-
             this.Bind<IPdfReporterProvider>().To<PdfReporterProvider>();
 
             // models factories
@@ -165,7 +162,6 @@ namespace DictionariesSystem.ConsoleClient.Container
             // create
             var createDictionaryBinding = this.Bind<ICommand>().To<CreateDictionaryCommand>().Named(CreateDictionaryCommandName);
             var addWordToDictionaryBinding = this.Bind<ICommand>().To<AddWordToDictionaryCommand>().Named(AddWordToDictionaryCommandName);
-            var registerUserBinding = this.Bind<ICommand>().To<RegisterCommand>().Named(RegisterUserCommandName);
 
             // delete
             var deleteDictionaryBinding = this.Bind<ICommand>().To<DeleteDictionaryCommand>().Named(DeleteDictionaryCommandName);
@@ -176,14 +172,15 @@ namespace DictionariesSystem.ConsoleClient.Container
             var listWordInfoBinding = this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
             var listDictionaryBinding = this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
             var listBadgesBinding = this.Bind<ICommand>().To<ListBadgesCommand>().Named(ListUserBadgesCommandName);
-            var loginUserBinding = this.Bind<ICommand>().To<LoginCommand>().Named(LoginUserCommandName);
 
             // update
             var updateWordBinding = this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);
             var importWordsBinding = this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
 
             // common
-            this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
+            this.Bind<ICommand>().To<RegisterCommand>().Named(RegisterUserCommandName);
+            this.Bind<ICommand>().To<LoginCommand>().Named(LoginUserCommandName);
+            this.Bind<ICommand>().To<LogoutCommand>().Named(LogoutCommandName);
             this.Bind<ICommand>().To<HelpCommand>().Named(HelpCommandName);
             this.Bind<ICommand>().To<ClearCommand>().Named(ClearCommandName);
 

@@ -5,14 +5,14 @@ using Bytes2you.Validation;
 
 namespace DictionariesSystem.Framework.Core.Commands.Common
 {
-    public class LogoutUserCommand : BaseCommand, ICommand
+    public class LogoutCommand : BaseCommand, ICommand
     {
         public const string ParametersNames = "";
         private const int NumberOfParameters = 0;
 
         private readonly IUserProvider userProvider;
 
-        public LogoutUserCommand(IUserProvider userProvider)
+        public LogoutCommand(IUserProvider userProvider)
         {
             Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
 

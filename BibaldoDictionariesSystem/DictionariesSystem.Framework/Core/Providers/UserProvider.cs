@@ -13,6 +13,7 @@ namespace DictionariesSystem.Framework.Core.Providers
         private const string InvalidLoginMessage = "Invalid username or password!";
         private const string InvalidRegisterMessage = "Such user already exists!";
         private const string InvalidLogoutMessage = "You must login first!";
+        private const string AlreadyLoggedInMessage = "You must logout first!";
 
         private readonly IRepository<User> usersRepository;
         private readonly IUnitOfWork unitOfWork;
@@ -49,6 +50,11 @@ namespace DictionariesSystem.Framework.Core.Providers
 
         public void Login(string username, string password)
         {
+            if (this.IsLogged)
+            {
+                throw new UserAuthenticationException(AlreadyLoggedInMessage);
+            }
+
             var targetUser = this.usersRepository
                 .All(x => x.Username == username && x.Passhash == password)
                 .FirstOrDefault();
@@ -68,8 +74,12 @@ namespace DictionariesSystem.Framework.Core.Providers
 
         public void Register(string username, string password)
         {
-            var existingUser = this.usersRepository.All(x => x.Username == username).FirstOrDefault();
+            if (this.IsLogged)
+            {
+                throw new UserAuthenticationException(AlreadyLoggedInMessage);
+            }
 
+            var existingUser = this.usersRepository.All(x => x.Username == username).FirstOrDefault();
             if (existingUser != null)
             {
                 throw new UserAuthenticationException(InvalidRegisterMessage);
