@@ -8,7 +8,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
 {
     public class ImportWordsFromFileCommand : BaseCommand, ICommand
     {
-        private const int NumberOfParameters = 2;
+        private const int NumberOfParameters = 3;
 
         private readonly IWordsImporterFactory wordsImporterFactory;
 
@@ -38,7 +38,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
             var importer = this.wordsImporterFactory.GetImporter(fileType);
             importer.Import(filePath, dictionaryName);
 
-            return $"Words from {filePath} have been successfulyy imported into the system";
+            return $"Words from {filePath} have been successfuly imported into the system";
         }
     }
 }

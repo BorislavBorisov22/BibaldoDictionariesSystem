@@ -2,6 +2,7 @@
 using DictionariesSystem.Contracts.Core;
 using DictionariesSystem.Contracts.Core.Providers;
 using Bytes2you.Validation;
+using DictionariesSystem.Framework.Core.Exceptions;
 
 namespace DictionariesSystem.Framework.Core
 {
@@ -45,8 +46,8 @@ namespace DictionariesSystem.Framework.Core
                 }
                 catch (Exception ex)
                 {
-                    //this.logger.Log(ex.Message);
-                    this.writer.WriteLine(ex.Message);
+                    this.logger.Log(ex.Message);
+                    this.writer.WriteLine(InvalidCommandMessage);
                 }
             }
         }

@@ -25,7 +25,6 @@ using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using Ninject.Parameters;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace DictionariesSystem.ConsoleClient.Container

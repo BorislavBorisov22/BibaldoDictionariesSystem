@@ -39,7 +39,9 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
         {
             string dictionaryTitle = parameters[0];
             string wordName = parameters[1];
-            string newdescription = string.Join(" ", parameters.Skip(2));
+            string newDescription = string.Join(" ", parameters.Skip(2));
+            
+            // TODO base.Execute();
 
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
             Guard.WhenArgument(dictionary, "No dictionary with this name was found.").IsNull().Throw();
@@ -47,12 +49,10 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
             var word = dictionary.Words.FirstOrDefault(w => w.Name == wordName);
             Guard.WhenArgument(wordName, "No word with this name was found.").IsNull().Throw();
 
-            word.Meanings.Add(this.dictionaryFactory.GetMeaning(newdescription));
-
+            word.Meanings.Add(this.dictionaryFactory.GetMeaning(newDescription));
             this.unitOfWork.SaveChanges();
 
-            string result = $"Added new meaning to word {wordName}: {newdescription}";
-
+            string result = $"Added new meaning to word {wordName}: {newDescription}";
             return result;
         }
     }
