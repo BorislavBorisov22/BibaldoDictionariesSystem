@@ -92,7 +92,7 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             this.Bind<IRepository<UserLog>>().To<Repository<UserLog>>()
                 .InSingletonScope()
-                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(UsersDbContextName));
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(LogsDbContextName));
 
             // from dictionaries db context
             this.Bind<IRepository<Word>>().To<Repository<Word>>()
@@ -117,6 +117,9 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<IReader>().To<ConsoleReader>().InSingletonScope();
             this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
             this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>();
+
+            this.Bind<UserLoggerInterceptor>().ToSelf();
+            this.Bind<ILogger>().To<UserLogger>().WhenInjectedInto<UserLoggerInterceptor>();
 
             this.Bind<IDateProvider>().To<DateProvider>().InSingletonScope();
             this.Bind<IUserProvider>().To<UserProvider>().InSingletonScope();
@@ -168,7 +171,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
 
             // read
-            this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName).Intercept().With<UserAuthenticatorInterceptor>();
+            var reporterBinding = this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName);
             this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
             this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
             this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);
@@ -180,6 +183,10 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             // common
             this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
+
+            // interceptions
+            reporterBinding.Intercept().With<UserAuthenticatorInterceptor>();
+            reporterBinding.Intercept().With<UserLoggerInterceptor>();
         }
     }
 }
