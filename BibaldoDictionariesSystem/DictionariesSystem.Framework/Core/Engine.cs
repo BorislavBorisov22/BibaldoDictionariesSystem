@@ -10,6 +10,7 @@ namespace DictionariesSystem.Framework.Core
     {
         private const string TerminateCommand = "Exit";
         private const string InvalidCommandMessage = "Invalid command!";
+        private const string UnexpectedExceptionMessage = "Unexpected exception happened..";
 
         private readonly ICommandProcessor commandProcessor;
         private readonly IWriter writer;
@@ -43,11 +44,19 @@ namespace DictionariesSystem.Framework.Core
 
                     var commandMessage = this.commandProcessor.ProcessCommand(commandAsText);
                     this.writer.WriteLine(commandMessage);
+                }                
+                catch (UserAuthenticationException ex)
+                {
+                    this.writer.WriteLine(ex.Message);
+                }
+                catch (InvalidCommandException)
+                {
+                    this.writer.WriteLine(InvalidCommandMessage);
                 }
                 catch (Exception ex)
                 {
                     this.logger.Log(ex.Message);
-                    this.writer.WriteLine(InvalidCommandMessage);
+                    this.writer.WriteLine(UnexpectedExceptionMessage);
                 }
             }
         }

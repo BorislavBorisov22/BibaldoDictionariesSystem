@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Commands\Common\ClearCommand.cs" />
     <Compile Include="Core\Commands\Common\HelpCommand.cs" />
     <Compile Include="Core\Commands\Common\LogoutUserCommand.cs" />
     <Compile Include="Core\Commands\Delete\DeleteDictionaryCommand.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Core\Commands\Update\UpdateWordCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Exceptions\InvalidCommandException.cs" />
+    <Compile Include="Core\Exceptions\UserAuthenticationException.cs" />
     <Compile Include="Core\Factories\DictionariesFactory.cs" />
     <Compile Include="Core\Factories\LogsFactory.cs" />
     <Compile Include="Core\Factories\UserFactory.cs" />

@@ -2,6 +2,7 @@
 using DictionariesSystem.Contracts.Core.Factories;
 using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
+using DictionariesSystem.Framework.Core.Exceptions;
 using DictionariesSystem.Models.Users;
 using System.Linq;
 
@@ -9,6 +10,10 @@ namespace DictionariesSystem.Framework.Core.Providers
 {
     public class UserProvider : IUserProvider
     {
+        private const string InvalidLoginMessage = "Invalid username or password!";
+        private const string InvalidRegisterMessage = "Such user already exists!";
+        private const string InvalidLogoutMessage = "You must login first!";
+
         private readonly IRepository<User> usersRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IUserFactory userFactory;
@@ -48,12 +53,16 @@ namespace DictionariesSystem.Framework.Core.Providers
                 .All(x => x.Username == username && x.Passhash == password)
                 .FirstOrDefault();
 
-            Guard.WhenArgument(targetUser, "Provider username or password is not valid").IsNull().Throw();
-            this.loggedUser = targetUser;
+            this.loggedUser = targetUser ?? throw new UserAuthenticationException(InvalidLoginMessage);
         }
 
         public void Logout()
         {
+            if (this.loggedUser == null)
+            {
+                throw new UserAuthenticationException(InvalidLogoutMessage);
+            }
+
             this.loggedUser = null;
         }
 
@@ -61,7 +70,10 @@ namespace DictionariesSystem.Framework.Core.Providers
         {
             var existingUser = this.usersRepository.All(x => x.Username == username).FirstOrDefault();
 
-            Guard.WhenArgument(existingUser, "Such user already exists").IsNotNull().Throw();
+            if (existingUser != null)
+            {
+                throw new UserAuthenticationException(InvalidRegisterMessage);
+            }
 
             var newUser = this.userFactory.GetUser(username, password);
             this.usersRepository.Add(newUser);

@@ -46,7 +46,6 @@ namespace DictionariesSystem.ConsoleClient.Container
         // create
         public const string CreateDictionaryCommandName = "CreateDictionary";
         public const string AddWordToDictionaryCommandName = "AddWordToDictionary";
-        public const string RegisterUserCommandName = "Register"; //
 
         // delete
         public const string DeleteDictionaryCommandName = "DeleteDictionary";
@@ -55,16 +54,19 @@ namespace DictionariesSystem.ConsoleClient.Container
         // read
         public const string ListDictionaryCommandName = "ListDictionary";
         public const string ListWordInformationCommandName = "ListWordInformation";
-        public const string ListUserBadgesCommandName = "ListBadges"; //
-        public const string GeneratePdfReportCommandName = "GenerateUsersReport"; //
-        public const string LoginUserCommandName = "Login"; //
+
+        public const string ListUserBadgesCommandName = "ShowBadges";
+        public const string GeneratePdfReportCommandName = "GenerateUsersReport";
 
         // update
         public const string UpdateWordCommandName = "UpdateWord";
         public const string ImportWordsFromFileCommandName = "ImportWordsFromFile";
 
         // common
+        public const string RegisterUserCommandName = "Register";
+        public const string LoginUserCommandName = "Login";
         public const string LogoutUserCommandName = "Logout";
+        public const string ClearCommandName = "Clear";
         public const string HelpCommandName = "--help";
 
         public override void Load()
@@ -115,10 +117,10 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             // engine and engine depndencies
             this.Bind<IEngine>().To<Engine>().InSingletonScope();
-            this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope();
+            this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope().Intercept().With<CommandProcessorInterceptor>();
             this.Bind<IReader>().To<ConsoleReader>().InSingletonScope();
             this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
-            this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>();
+            this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>().InSingletonScope();
 
             this.Bind<IDateProvider>().To<DateProvider>().InSingletonScope();
             this.Bind<IUserProvider>().To<UserProvider>().InSingletonScope();
@@ -181,8 +183,9 @@ namespace DictionariesSystem.ConsoleClient.Container
             var importWordsBinding = this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
 
             // common
-            var logoutBinding = this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
+            this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
             this.Bind<ICommand>().To<HelpCommand>().Named(HelpCommandName);
+            this.Bind<ICommand>().To<ClearCommand>().Named(ClearCommandName);
 
             // interceptor bindings
             this.Bind<UserLoggerInterceptor>().ToSelf();
@@ -193,7 +196,7 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             if (!configurationProvider.IsTestEnvironment())
             {
-                // interceptions
+                // command interceptions
                 // create
                 createDictionaryBinding.Intercept().With<UserAuthenticatorInterceptor>();
                 createDictionaryBinding.Intercept().With<UserLoggerInterceptor>();

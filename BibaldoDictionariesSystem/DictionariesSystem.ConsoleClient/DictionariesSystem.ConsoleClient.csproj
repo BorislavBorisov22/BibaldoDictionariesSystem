@@ -99,6 +99,7 @@
     <Compile Include="Configuration\ConfigurationProvider.cs" />
     <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="Container\DictionariesSystemModule.cs" />
+    <Compile Include="Interceptors\CommandProcessorInterceptor.cs" />
     <Compile Include="Interceptors\UserAuthenticatorInterceptor.cs" />
     <Compile Include="Interceptors\UserContributionsInterceptor.cs" />
     <Compile Include="Interceptors\UserLoggerInterceptor.cs" />
