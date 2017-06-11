@@ -3,7 +3,6 @@ using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Logs;
 using Bytes2you.Validation;
-using DictionariesSystem.Models.Logs.Enums;
 using DictionariesSystem.Contracts.Core.Factories;
 
 namespace DictionariesSystem.Framework.Core.Providers.Loggers
@@ -28,12 +27,11 @@ namespace DictionariesSystem.Framework.Core.Providers.Loggers
             this.logsFactory = logsFactory;
         }
 
-        public void Log(string message, string state = null)
+        public void Log(string information)
         {
             var userLog = this.logsFactory.GetUserLog(
                 this.userProvider.LoggedUser.Username,
-                message,
-                state,
+                information,
                 DateProvider.Provider.GetDate());
 
             this.repository.Add(userLog);

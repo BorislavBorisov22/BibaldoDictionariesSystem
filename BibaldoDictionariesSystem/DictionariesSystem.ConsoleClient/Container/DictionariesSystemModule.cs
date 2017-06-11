@@ -53,10 +53,10 @@ namespace DictionariesSystem.ConsoleClient.Container
         public const string DeleteWordCommandName = "DeleteWord";
 
         // read
-        public const string GeneratePdfReportCommandName = "GenerateReport";
-        public const string ListWordInformationCommandName = "ShowWordInfo";
         public const string ListDictionaryCommandName = "ShowDictionaryInfo";
-        public const string ListUserBadgesCommandName = "ShowUserBadges";
+        public const string ListWordInformationCommandName = "ShowWordInfo";
+        public const string ListUserBadgesCommandName = "ShowBadges";
+        public const string GeneratePdfReportCommandName = "GenerateUsersReport";
         public const string LoginUserCommandName = "Login";
 
         // update
@@ -158,14 +158,11 @@ namespace DictionariesSystem.ConsoleClient.Container
             // commands
             // create
             this.Bind<ICommand>().To<CreateDictionaryCommand>().Named(CreateDictionaryCommandName);
-
             this.Bind<ICommand>().To<AddWordToDictionaryCommand>().Named(AddWordToDictionaryCommandName);
-
             this.Bind<ICommand>().To<RegisterUserCommand>().Named(RegisterUserCommandName);
 
             // delete
             this.Bind<ICommand>().To<DeleteDictionaryCommand>().Named(DeleteDictionaryCommandName);
-
             this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
 
             // read
@@ -177,7 +174,6 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             // update
             this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);
-
             this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
         }
     }

@@ -18,7 +18,10 @@ namespace DictionariesSystem.ConsoleClient.Interceptors
 
         public void Intercept(IInvocation invocation)
         {
-            throw new NotImplementedException();
+            string commandName = invocation.Request.Method.Name.Replace("Command", "");
+            logger.Log(commandName);
+
+            invocation.Proceed();
         }
     }
 }

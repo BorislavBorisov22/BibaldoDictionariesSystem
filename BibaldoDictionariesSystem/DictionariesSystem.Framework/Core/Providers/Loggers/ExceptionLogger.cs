@@ -24,9 +24,9 @@ namespace DictionariesSystem.Framework.Core.Providers.Loggers
             this.logsFactory = logsFactory;
         }
 
-        public void Log(string message, string state = null)
+        public void Log(string information)
         {
-            var exceptionLog = this.logsFactory.GetExceptionLog(message, DateProvider.Provider.GetDate());
+            var exceptionLog = this.logsFactory.GetExceptionLog(information, DateProvider.Provider.GetDate());
             this.repository.Add(exceptionLog);
             this.unitOfWork.SaveChanges();
         }

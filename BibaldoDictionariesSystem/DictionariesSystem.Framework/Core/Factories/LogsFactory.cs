@@ -1,6 +1,5 @@
 ﻿using DictionariesSystem.Contracts.Core.Factories;
 using DictionariesSystem.Models.Logs;
-using DictionariesSystem.Models.Logs.Enums;
 using System;
 
 namespace DictionariesSystem.Framework.Core.Factories
@@ -12,12 +11,9 @@ namespace DictionariesSystem.Framework.Core.Factories
             return new ExceptionLog() { Message = message, LoggedOn = loggedOn };
         }
 
-        public UserLog GetUserLog(string username, string message, string action, DateTime loggedOn)
+        public UserLog GetUserLog(string username, string commandName, DateTime executionDate)
         {
-            UserAction userAction;
-            Enum.TryParse(action, out userAction);
-
-            return new UserLog() { Username = username, Message = message, Action = userAction, LoggedOn = loggedOn };
+            return new UserLog() { Username = username, CommandName = commandName,  ExecutionDate = executionDate };
         }
     }
 }

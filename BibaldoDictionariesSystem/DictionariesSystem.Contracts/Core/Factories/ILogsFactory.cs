@@ -5,7 +5,7 @@ namespace DictionariesSystem.Contracts.Core.Factories
 {
     public interface ILogsFactory
     {
-        UserLog GetUserLog(string username, string message, string action, DateTime loggedOn);
+        UserLog GetUserLog(string username, string commandName, DateTime executionDate);
 
         ExceptionLog GetExceptionLog(string message, DateTime loggedOn);
     }
