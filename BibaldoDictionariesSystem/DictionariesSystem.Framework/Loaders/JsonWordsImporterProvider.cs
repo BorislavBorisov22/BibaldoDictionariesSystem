@@ -1,10 +1,13 @@
-﻿using System;
-using DictionariesSystem.Contracts.Loaders;
-using DictionariesSystem.Models.Dictionaries;
+﻿using Bytes2you.Validation;
+using DictionariesSystem.Contracts.Core.Factories;
 using DictionariesSystem.Contracts.Data;
-using Bytes2you.Validation;
+using DictionariesSystem.Contracts.Loaders;
+using DictionariesSystem.Framework.Loaders.ConvertModels;
+using DictionariesSystem.Models.Dictionaries;
+using DictionariesSystem.Models.Dictionaries.Enums;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using System;
+using System.IO;
 using System.Linq;
 
 namespace DictionariesSystem.Framework.Loaders
@@ -14,16 +17,19 @@ namespace DictionariesSystem.Framework.Loaders
         private readonly IRepository<Dictionary> dictionariesRepository;
         private readonly IRepository<Word> wordsRepository;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IDictionariesFactory dictionariesFactory;
 
-        public JsonWordsImporterProvider(IRepository<Dictionary> dictionariesRepository, IRepository<Word> wordsRepository, IUnitOfWork unitOfWork)
+        public JsonWordsImporterProvider(IRepository<Dictionary> dictionariesRepository, IRepository<Word> wordsRepository, IUnitOfWork unitOfWork, IDictionariesFactory dictionariesFactory)
         {
             Guard.WhenArgument(dictionariesRepository, "dictionariesRepository").IsNull().Throw();
             Guard.WhenArgument(wordsRepository, "wordsRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+            Guard.WhenArgument(dictionariesFactory, "dictionariesFactory").IsNull().Throw();
 
             this.dictionariesRepository = dictionariesRepository;
             this.wordsRepository = wordsRepository;
             this.unitOfWork = unitOfWork;
+            this.dictionariesFactory = dictionariesFactory;
         }
 
         public void Import(string filePath, string dictionaryTitle)
@@ -37,12 +43,21 @@ namespace DictionariesSystem.Framework.Loaders
 
             Guard.WhenArgument(targetDictionary, "No Dictionary with such title was found!").IsNull().Throw();
 
-            var words = JsonConvert.DeserializeObject<IEnumerable<Word>>(filePath);
+            string jsonContent = File.ReadAllText(filePath);
 
-            foreach (var word in words)
+            var wordsCollectionModel = JsonConvert.DeserializeObject<JsonWordsCollectionModel>(jsonContent);
+
+            foreach (var wordModel in wordsCollectionModel.Words)
             {
-                word.Dictionary = targetDictionary;
-                this.wordsRepository.Add(word);
+                var currentWordMeaning = dictionariesFactory.GetMeaning(wordModel.Description);
+
+                SpeechPart wordSpeechPart;
+                Enum.TryParse(wordModel.SpeechPart, out wordSpeechPart);
+                var currentWord = dictionariesFactory.GetWord(wordModel.Name, wordModel.Description);
+                currentWord.Meanings.Add(currentWordMeaning);
+                currentWord.Dictionary = targetDictionary;
+
+                this.wordsRepository.Add(currentWord);
             }
 
             this.unitOfWork.SaveChanges();

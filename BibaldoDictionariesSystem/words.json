@@ -1,0 +1,14 @@
+{
+    "words": [{
+            "name": "SomeersfieldName",
+            "description": "someDescription",
+            "speechPart": "noun"
+        },
+        {
+            "name": "OtheraName",
+            "description": "someOtherDescriptionBrato",
+            "root": "Other",
+            "speechPart": "verb"
+        }
+    ]
+}

@@ -76,6 +76,8 @@
     <Compile Include="Core\Commands\Create\CreateDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Create\RegisterUserCommand.cs" />
     <Compile Include="Core\Commands\Update\ImportWordsFromFileCommand.cs" />
+    <Compile Include="Loaders\ConvertModels\JsonWordModel.cs" />
+    <Compile Include="Loaders\ConvertModels\JsonWordsCollectionModel.cs" />
     <Compile Include="Loaders\JsonWordsImporterProvider.cs" />
     <Compile Include="Loaders\PdfReporterProvider.cs" />
     <Compile Include="Loaders\XmlWordsImporterProvider.cs" />
