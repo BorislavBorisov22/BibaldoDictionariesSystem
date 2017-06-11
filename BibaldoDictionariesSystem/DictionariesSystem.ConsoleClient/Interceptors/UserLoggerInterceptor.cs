@@ -18,7 +18,7 @@ namespace DictionariesSystem.ConsoleClient.Interceptors
 
         public void Intercept(IInvocation invocation)
         {
-            string commandName = invocation.Request.Target.GetType().Name.Replace("Command", "");
+            string commandName = invocation.Request.Target.GetType().Name.Replace("Command", string.Empty);
             logger.Log(commandName);
 
             invocation.Proceed();

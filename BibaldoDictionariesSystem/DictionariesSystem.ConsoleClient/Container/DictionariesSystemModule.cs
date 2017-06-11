@@ -1,4 +1,5 @@
-﻿using DictionariesSystem.ConsoleClient.Interceptors;
+﻿using DictionariesSystem.ConsoleClient.Configuration;
+using DictionariesSystem.ConsoleClient.Interceptors;
 using DictionariesSystem.Contracts.Core;
 using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Core.Factories;
@@ -45,25 +46,25 @@ namespace DictionariesSystem.ConsoleClient.Container
         // create
         public const string CreateDictionaryCommandName = "CreateDictionary";
         public const string AddWordToDictionaryCommandName = "AddWordToDictionary";
-        public const string RegisterUserCommandName = "Register";
+        public const string RegisterUserCommandName = "Register"; //
 
         // delete
         public const string DeleteDictionaryCommandName = "DeleteDictionary";
         public const string DeleteWordCommandName = "DeleteWord";
 
         // read
-        public const string ListDictionaryCommandName = "ShowDictionaryInfo";
-        public const string ListWordInformationCommandName = "ShowWordInfo";
-        public const string ListUserBadgesCommandName = "ShowBadges";
-        public const string GeneratePdfReportCommandName = "GenerateUsersReport";
-        public const string LoginUserCommandName = "Login";
+        public const string ListDictionaryCommandName = "ListDictionary";
+        public const string ListWordInformationCommandName = "ListWordInformation";
+        public const string ListUserBadgesCommandName = "ShowBadges"; //
+        public const string GeneratePdfReportCommandName = "GenerateUsersReport"; //
+        public const string LoginUserCommandName = "Login"; //
 
         // update
         public const string UpdateWordCommandName = "UpdateWord";
-        public const string ImportWordsFromFileCommandName = "ImportWords";
+        public const string ImportWordsFromFileCommandName = "ImportWordsFromFile";
 
         // common
-        public const string LogoutUserCommandName = "Logout";
+        public const string LogoutUserCommandName = "Logout"; //
 
         public override void Load()
         {
@@ -118,9 +119,6 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<IWriter>().To<ConsoleWriter>().InSingletonScope();
             this.Bind<ILogger>().To<ExceptionLogger>().WhenInjectedInto<IEngine>();
 
-            this.Bind<UserLoggerInterceptor>().ToSelf();
-            this.Bind<ILogger>().To<UserLogger>().WhenInjectedInto<UserLoggerInterceptor>();
-
             this.Bind<IDateProvider>().To<DateProvider>().InSingletonScope();
             this.Bind<IUserProvider>().To<UserProvider>().InSingletonScope();
 
@@ -162,31 +160,76 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             // commands
             // create
-            this.Bind<ICommand>().To<CreateDictionaryCommand>().Named(CreateDictionaryCommandName);
-            this.Bind<ICommand>().To<AddWordToDictionaryCommand>().Named(AddWordToDictionaryCommandName);
-            this.Bind<ICommand>().To<RegisterUserCommand>().Named(RegisterUserCommandName);
+            var createDictionaryBinding = this.Bind<ICommand>().To<CreateDictionaryCommand>().Named(CreateDictionaryCommandName);
+            var addWordToDictionaryBinding = this.Bind<ICommand>().To<AddWordToDictionaryCommand>().Named(AddWordToDictionaryCommandName);
+            var registerUserBinding = this.Bind<ICommand>().To<RegisterUserCommand>().Named(RegisterUserCommandName);
 
             // delete
-            this.Bind<ICommand>().To<DeleteDictionaryCommand>().Named(DeleteDictionaryCommandName);
-            this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
+            var deleteDictionaryBinding = this.Bind<ICommand>().To<DeleteDictionaryCommand>().Named(DeleteDictionaryCommandName);
+            var deleteWordBinding = this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
 
             // read
-            var reporterBinding = this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName);
-            this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
-            this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
-            this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);
-            this.Bind<ICommand>().To<LoginUserCommand>().Named(LoginUserCommandName);
+            var generateReportBinding = this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName);
+            var listWordInfoBinding = this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
+            var listDictionaryBinding = this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
+            var listBadgesBinding = this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);
+            var loginUserBinding = this.Bind<ICommand>().To<LoginUserCommand>().Named(LoginUserCommandName);
 
             // update
-            this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);
-            this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
+            var updateWordBinding = this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);
+            var importWordsBinding = this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
 
             // common
-            this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
+            var logoutBinding = this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
 
-            // interceptions
-            reporterBinding.Intercept().With<UserAuthenticatorInterceptor>();
-            reporterBinding.Intercept().With<UserLoggerInterceptor>();
+            // interceptor bindings
+            this.Bind<UserLoggerInterceptor>().ToSelf();
+            this.Bind<ILogger>().To<UserLogger>().WhenInjectedInto<UserLoggerInterceptor>();
+
+            this.Bind<IConfigurationProvider>().To<ConfigurationProvider>();
+            var configurationProvider = this.Kernel.Get<IConfigurationProvider>();
+
+            if (!configurationProvider.IsTestEnvironment())
+            {
+                // interceptions
+                // create
+                createDictionaryBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                createDictionaryBinding.Intercept().With<UserLoggerInterceptor>();
+                createDictionaryBinding.Intercept().With<UserContributionsInterceptor>();
+
+                addWordToDictionaryBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                addWordToDictionaryBinding.Intercept().With<UserLoggerInterceptor>();
+                addWordToDictionaryBinding.Intercept().With<UserContributionsInterceptor>();
+
+                // delete
+                deleteDictionaryBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                deleteDictionaryBinding.Intercept().With<UserLoggerInterceptor>();
+
+                deleteWordBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                deleteWordBinding.Intercept().With<UserLoggerInterceptor>();
+
+                // read
+                generateReportBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                generateReportBinding.Intercept().With<UserLoggerInterceptor>();
+
+                listDictionaryBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                listDictionaryBinding.Intercept().With<UserLoggerInterceptor>();
+
+                listWordInfoBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                listWordInfoBinding.Intercept().With<UserLoggerInterceptor>();
+
+                listBadgesBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                listBadgesBinding.Intercept().With<UserLoggerInterceptor>();
+
+                // update
+                updateWordBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                updateWordBinding.Intercept().With<UserLoggerInterceptor>();
+                updateWordBinding.Intercept().With<UserContributionsInterceptor>();
+
+                importWordsBinding.Intercept().With<UserAuthenticatorInterceptor>();
+                importWordsBinding.Intercept().With<UserLoggerInterceptor>();
+                importWordsBinding.Intercept().With<UserContributionsInterceptor>();
+            }
         }
     }
 }
