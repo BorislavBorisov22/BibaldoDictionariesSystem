@@ -2,12 +2,12 @@
 {
     public enum SpeechPart
     {
-        Verb = 0,
-        Noun = 1,
-        Adjective = 2,
-        Adverb = 3,
-        Pronoun = 4,
-        Preposition = 5,
-        NotSpecified = 6
+        NotSpecified = 0,
+        Verb = 1,
+        Noun = 2,
+        Adjective = 3,
+        Adverb = 4,
+        Pronoun = 5,
+        Preposition = 6,
     }
 }

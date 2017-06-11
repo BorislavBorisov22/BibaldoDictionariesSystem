@@ -38,7 +38,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
             var importer = this.wordsImporterFactory.GetImporter(fileType);
             importer.Import(filePath, dictionaryName);
 
-            return $"Words from {filePath} have been successfuly imported into the system";
+            return $"Words from {filePath} have been successfuly imported into the dictionary";
         }
     }
 }

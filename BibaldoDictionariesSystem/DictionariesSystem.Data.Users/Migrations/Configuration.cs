@@ -12,8 +12,7 @@ namespace DictionariesSystem.Data.Users.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(UsersDbContext context)

@@ -12,7 +12,6 @@ namespace DictionariesSystem.Data.Logs
         public LogsDbContext()
             : base(ConnectionStringName)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LogsDbContext, Configuration>());
         }
 
         public virtual IDbSet<UserLog> UserLogs { get; set; }

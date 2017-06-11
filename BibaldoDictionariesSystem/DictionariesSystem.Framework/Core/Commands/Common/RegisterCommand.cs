@@ -41,9 +41,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 
             this.userProvider.Register(username, password);
 
-            string restult = $"A new user with username: {username} was created!";
-
-            return restult;
+            return $"A new user with username {username} was created!";            
         }
     }
 }

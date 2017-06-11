@@ -9,8 +9,7 @@ namespace DictionariesSystem.Data.Logs.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(DictionariesSystem.Data.Logs.LogsDbContext context)
