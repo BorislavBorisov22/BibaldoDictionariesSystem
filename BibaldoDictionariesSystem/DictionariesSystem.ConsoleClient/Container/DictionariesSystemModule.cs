@@ -170,30 +170,19 @@ namespace DictionariesSystem.ConsoleClient.Container
             var deleteWordBinding = this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
 
             // read
-<<<<<<< HEAD
-            var reporterBinding = this.Bind<ICommand>().To<GenerateUsersReportCommand>().Named(GeneratePdfReportCommandName);
-            this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
-            this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
-            this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);
-            this.Bind<ICommand>().To<LoginUserCommand>().Named(LoginUserCommandName);
-=======
-            var generateReportBinding = this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName);
+            var generateReportBinding = this.Bind<ICommand>().To<GenerateUsersReportCommand>().Named(GeneratePdfReportCommandName);
             var listWordInfoBinding = this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
             var listDictionaryBinding = this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
             var listBadgesBinding = this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);
             var loginUserBinding = this.Bind<ICommand>().To<LoginUserCommand>().Named(LoginUserCommandName);
->>>>>>> 377449632f46877e4c5dd415f99c98a28bbe4c88
 
             // update
             var updateWordBinding = this.Bind<ICommand>().To<UpdateWordCommand>().Named(UpdateWordCommandName);
             var importWordsBinding = this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
 
             // common
-<<<<<<< HEAD
-            this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
-            this.Bind<ICommand>().To<HelpCommand>().Named(HelpCommandName);
-=======
             var logoutBinding = this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
+            this.Bind<ICommand>().To<HelpCommand>().Named(HelpCommandName);
 
             // interceptor bindings
             this.Bind<UserLoggerInterceptor>().ToSelf();
@@ -238,7 +227,6 @@ namespace DictionariesSystem.ConsoleClient.Container
                 updateWordBinding.Intercept().With<UserAuthenticatorInterceptor>();
                 updateWordBinding.Intercept().With<UserLoggerInterceptor>();
                 updateWordBinding.Intercept().With<UserContributionsInterceptor>();
->>>>>>> 377449632f46877e4c5dd415f99c98a28bbe4c88
 
                 importWordsBinding.Intercept().With<UserAuthenticatorInterceptor>();
                 importWordsBinding.Intercept().With<UserLoggerInterceptor>();
