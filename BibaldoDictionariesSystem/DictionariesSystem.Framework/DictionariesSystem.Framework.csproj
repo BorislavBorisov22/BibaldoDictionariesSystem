@@ -57,7 +57,7 @@
     <Compile Include="Core\Commands\Common\LogoutUserCommand.cs" />
     <Compile Include="Core\Commands\Delete\DeleteDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Delete\DeleteWordCommand.cs" />
-    <Compile Include="Core\Commands\Read\GeneratePdfReportCommand.cs" />
+    <Compile Include="Core\Commands\Common\GenerateUsersReportCommand.cs" />
     <Compile Include="Core\Commands\Read\ListDictionaryCommand.cs" />
     <Compile Include="Core\Commands\Read\ListUserBadgesCommand.cs" />
     <Compile Include="Core\Commands\Read\ListWordInformationCommand.cs" />

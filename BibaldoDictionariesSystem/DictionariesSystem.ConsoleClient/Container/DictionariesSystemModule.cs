@@ -172,7 +172,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<ICommand>().To<DeleteWordCommand>().Named(DeleteWordCommandName);
 
             // read
-            var reporterBinding = this.Bind<ICommand>().To<GeneratePdfReportCommand>().Named(GeneratePdfReportCommandName);
+            var reporterBinding = this.Bind<ICommand>().To<GenerateUsersReportCommand>().Named(GeneratePdfReportCommandName);
             this.Bind<ICommand>().To<ListWordInformationCommand>().Named(ListWordInformationCommandName);
             this.Bind<ICommand>().To<ListDictionaryCommand>().Named(ListDictionaryCommandName);
             this.Bind<ICommand>().To<ListUserBadgesCommand>().Named(ListUserBadgesCommandName);

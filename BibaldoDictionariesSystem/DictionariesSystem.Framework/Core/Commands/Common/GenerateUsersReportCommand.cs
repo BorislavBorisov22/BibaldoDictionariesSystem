@@ -7,14 +7,14 @@ using DictionariesSystem.Contracts.Loaders;
 
 namespace DictionariesSystem.Framework.Core.Commands.Read
 {
-    public class GeneratePdfReportCommand : BaseCommand, ICommand
+    public class GenerateUsersReportCommand : BaseCommand, ICommand
     {
         public const string ParametersNames = "";
         private const int NumberOfParameters = 0;
 
         private readonly IPdfReporterProvider reporterProvider;
 
-        public GeneratePdfReportCommand(IPdfReporterProvider reporterProvider)
+        public GenerateUsersReportCommand(IPdfReporterProvider reporterProvider)
         {
             Guard.WhenArgument(reporterProvider, "reporterProvider").IsNull().Throw();
 

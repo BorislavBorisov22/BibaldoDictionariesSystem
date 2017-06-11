@@ -24,6 +24,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Common
             base.Execute(parameters);
 
             var result = new StringBuilder();
+            result.AppendLine();
 
             var currentAssembly = this.GetType().GetTypeInfo().Assembly;
             currentAssembly.DefinedTypes
