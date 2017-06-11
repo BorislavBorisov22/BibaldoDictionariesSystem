@@ -135,6 +135,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<IUserFactory>().To<UserFactory>().InSingletonScope();
 
             // importers factory
+            this.Bind<IWordsImporterFactory>().ToFactory();
             this.Bind<IWordsImporterProvider>().ToMethod(context =>
             {
                 IList<IParameter> parameters = context.Parameters.ToList();

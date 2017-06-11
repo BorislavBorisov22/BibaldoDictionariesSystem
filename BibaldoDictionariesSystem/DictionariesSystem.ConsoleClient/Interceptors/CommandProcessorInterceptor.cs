@@ -1,7 +1,6 @@
 ﻿using System;
 using Ninject.Extensions.Interception;
 using DictionariesSystem.Framework.Core.Exceptions;
-using Ninject;
 
 namespace DictionariesSystem.ConsoleClient.Interceptors
 {

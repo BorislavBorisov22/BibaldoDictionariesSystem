@@ -70,6 +70,7 @@ namespace DictionariesSystem.Framework.Loaders
                 {
                     xmlReader.Read();
                     word.SpeechPart = (SpeechPart)Enum.Parse(typeof(SpeechPart), xmlReader.Value);
+                    isSpeechPartRead = true;
                 }
 
                 if (xmlReader.IsStartElement() && xmlReader.Name == "meaning")
