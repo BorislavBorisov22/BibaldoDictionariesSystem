@@ -12,17 +12,14 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
         private const int NumberOfParameters = 2;
 
         private readonly IRepository<User> repository;
-        private readonly IUnitOfWork unitOfWork;
         private readonly IUserProvider userProvider;
 
-        public RegisterUserCommand(IRepository<User> repository, IUnitOfWork unitOfWork, IUserProvider user)
+        public RegisterUserCommand(IRepository<User> repository, IUserProvider user)
         {
             Guard.WhenArgument(repository, "repository").IsNull().Throw();
-            Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
             Guard.WhenArgument(user, "user").IsNull().Throw();
 
             this.repository = repository;
-            this.unitOfWork = unitOfWork;
             this.userProvider = user;
         }
 

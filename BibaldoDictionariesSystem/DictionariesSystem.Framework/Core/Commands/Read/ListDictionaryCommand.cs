@@ -13,12 +13,11 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
 {
     public class ListDictionaryCommand : BaseCommand, ICommand
     {
-        private const int NumberOfParameters = 2;
+        private const int NumberOfParameters = 1;
         private readonly IRepository<Dictionary> dictionaries;
         private readonly IUserProvider user;
 
-        public ListDictionaryCommand(IRepository<Dictionary> dictionaries,
-                                    IUserProvider user)
+        public ListDictionaryCommand(IRepository<Dictionary> dictionaries, IUserProvider user)
         {
             Guard.WhenArgument(dictionaries, "dictionaries").IsNull().Throw();
             Guard.WhenArgument(user, "user").IsNull().Throw();
