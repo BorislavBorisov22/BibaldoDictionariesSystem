@@ -15,15 +15,12 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
     {
         private const int NumberOfParameters = 1;
         private readonly IRepository<Dictionary> dictionaries;
-        private readonly IUserProvider user;
 
-        public ListDictionaryCommand(IRepository<Dictionary> dictionaries, IUserProvider user)
+        public ListDictionaryCommand(IRepository<Dictionary> dictionaries)
         {
             Guard.WhenArgument(dictionaries, "dictionaries").IsNull().Throw();
-            Guard.WhenArgument(user, "user").IsNull().Throw();
 
             this.dictionaries = dictionaries;
-            this.user = user;
         }
 
         protected override int ParametersCount
@@ -41,11 +38,9 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
             string dictionaryTitle = parameters[0];
 
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
-
             Guard.WhenArgument(dictionary, "No dictionary with this name").IsNull().Throw();
 
             StringBuilder words = new StringBuilder();
-
             foreach (Word word in dictionary.Words)
             {
                 words.AppendLine($"{word.Name} : {string.Join(", ", word.Meanings)}");

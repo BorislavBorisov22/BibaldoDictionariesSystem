@@ -38,15 +38,12 @@ namespace DictionariesSystem.Framework.Core.Commands.Delete
             string dictionaryTitle = parameters[0];
 
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
-
             Guard.WhenArgument(dictionary, "No dictionary with this name.").IsNull().Throw();
 
             dictionaries.Delete(dictionary);
-
             this.unitOfWork.SaveChanges();
 
-            string result = $"Deleted dictionary: {dictionary.Title}";
-
+            string result = $"Deleted dictionary {dictionary.Title}";
             return result;
         }
     }

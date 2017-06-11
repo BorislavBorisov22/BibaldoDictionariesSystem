@@ -51,7 +51,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             var newDictionary = this.dictionariesFactory.GetDictionary(title, author, language, DateProvider.Provider.GetDate());
 
             this.dictionariesRepository.Add(newDictionary);
-            this.userProvider.LoggedUser.ContributionsCount += 1;
+            this.userProvider.LoggedUser.ContributionsCount += 3;
 
             this.unitOfWork.SaveChanges();
 

@@ -15,7 +15,7 @@ namespace DictionariesSystem.Framework.Core.Factories
         public UserLog GetUserLog(string username, string message, string action, DateTime loggedOn)
         {
             UserAction userAction;
-            Enum.TryParse<UserAction>(action, out userAction);
+            Enum.TryParse(action, out userAction);
 
             return new UserLog() { Username = username, Message = message, Action = userAction, LoggedOn = loggedOn };
         }

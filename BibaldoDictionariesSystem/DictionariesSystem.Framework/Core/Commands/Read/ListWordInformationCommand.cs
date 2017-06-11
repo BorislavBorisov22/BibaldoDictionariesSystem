@@ -13,15 +13,15 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
     {
         private const int NumberOfParameters = 2;
         private readonly IRepository<Dictionary> dictionaryRepository;
-        private readonly IUserProvider user;
+        private readonly IUserProvider userProvider;
 
-        public ListWordInformationCommand(IRepository<Dictionary> dictionaryRepository, IUserProvider user)
+        public ListWordInformationCommand(IRepository<Dictionary> dictionaryRepository, IUserProvider userProvider)
         {
             Guard.WhenArgument(dictionaryRepository, "dictionariyRepository").IsNull().Throw();
-            Guard.WhenArgument(user, "user").IsNull().Throw();
+            Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
 
             this.dictionaryRepository = dictionaryRepository;
-            this.user = user;
+            this.userProvider = userProvider;
         }
 
         protected override int ParametersCount
@@ -37,19 +37,15 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
             base.Execute(parameters);
 
             string dictionaryName = parameters[0];
-
             string wordName = parameters[1];
 
             var dictionary = this.dictionaryRepository.All(d => d.Title == dictionaryName).FirstOrDefault();
-
             Guard.WhenArgument(dictionary, "No dictionary with that name was found.").IsNull().Throw();
 
             var word = dictionary.Words.FirstOrDefault(w => w.Name == wordName);
-
             Guard.WhenArgument(word, "No word with that name was found.").IsNull().Throw();
 
             StringBuilder wordInformation = new StringBuilder();
-
             wordInformation.AppendLine($"{word.Name} - {word.SpeechPart}");
 
             if (word.RootWord != null)
