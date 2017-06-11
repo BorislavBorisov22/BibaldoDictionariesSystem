@@ -86,6 +86,7 @@ namespace DictionariesSystem.Framework.Loaders
                 return null;
             }
 
+            word.Meanings.Add(meaning);
             return word;
         }
     }

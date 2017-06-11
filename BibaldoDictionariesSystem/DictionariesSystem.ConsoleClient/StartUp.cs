@@ -1,7 +1,6 @@
 using DictionariesSystem.ConsoleClient.Container;
 using DictionariesSystem.Contracts.Core;
 using Ninject;
-using System;
 
 namespace DictionariesSystem.ConsoleClient
 {
