@@ -10,7 +10,9 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
 {
     public class UpdateWordCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "[dictionaryTitle] [wordName] [newDescription]";
         private const int NumberOfParameters = 3;
+
         private readonly IRepository<Dictionary> dictionaries;
         private readonly IUnitOfWork unitOfWork;
         private readonly IDictionariesFactory dictionaryFactory;

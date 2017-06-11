@@ -1,10 +1,7 @@
 ﻿using Bytes2you.Validation;
 using DictionariesSystem.Contracts.Core.Commands;
-using DictionariesSystem.Contracts.Core.Factories;
-using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Dictionaries;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +10,9 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
 {
     public class ListDictionaryCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "[dictionaryTitle]";
         private const int NumberOfParameters = 1;
+
         private readonly IRepository<Dictionary> dictionaries;
 
         public ListDictionaryCommand(IRepository<Dictionary> dictionaries)

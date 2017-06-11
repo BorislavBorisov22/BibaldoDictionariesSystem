@@ -64,6 +64,7 @@ namespace DictionariesSystem.ConsoleClient.Container
 
         // common
         public const string LogoutUserCommandName = "Logout";
+        public const string HelpCommandName = "--help";
 
         public override void Load()
         {
@@ -183,6 +184,7 @@ namespace DictionariesSystem.ConsoleClient.Container
 
             // common
             this.Bind<ICommand>().To<LogoutUserCommand>().Named(LogoutUserCommandName);
+            this.Bind<ICommand>().To<HelpCommand>().Named(HelpCommandName);
 
             // interceptions
             reporterBinding.Intercept().With<UserAuthenticatorInterceptor>();

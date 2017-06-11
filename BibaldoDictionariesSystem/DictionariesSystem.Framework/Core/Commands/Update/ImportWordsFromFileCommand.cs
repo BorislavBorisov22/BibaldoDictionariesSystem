@@ -1,13 +1,13 @@
 ﻿using Bytes2you.Validation;
 using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Core.Factories;
-using DictionariesSystem.Contracts.Loaders;
 using System.Collections.Generic;
 
 namespace DictionariesSystem.Framework.Core.Commands.Update
 {
     public class ImportWordsFromFileCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "[fileType] [dictionaryName] [filePath]";
         private const int NumberOfParameters = 3;
 
         private readonly IWordsImporterFactory wordsImporterFactory;

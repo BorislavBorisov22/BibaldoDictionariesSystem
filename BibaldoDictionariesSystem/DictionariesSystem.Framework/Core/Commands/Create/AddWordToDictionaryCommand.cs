@@ -4,17 +4,14 @@ using DictionariesSystem.Contracts.Core.Factories;
 using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Dictionaries;
-using DictionariesSystem.Models.Users;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class AddWordToDictionaryCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "[wordName] [dictionaryTitle] [speechPart] [wordMeaning]";
         private const int NumberOfParameters = 4;
 
         private readonly IRepository<Dictionary> dictionaries;

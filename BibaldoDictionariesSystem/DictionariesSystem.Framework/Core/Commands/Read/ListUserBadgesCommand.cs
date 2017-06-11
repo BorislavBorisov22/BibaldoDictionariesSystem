@@ -1,20 +1,19 @@
 ﻿using Bytes2you.Validation;
 using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Core.Providers;
-using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Users;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DictionariesSystem.Framework.Core.Commands.Read
 {
     public class ListUserBadgesCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "";
         private const int NumberOfParameters = 0;
+
         private readonly IUserProvider userProvider;
+
         public ListUserBadgesCommand(IUserProvider userProvider)
         {
             Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();

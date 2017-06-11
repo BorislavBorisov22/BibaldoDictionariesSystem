@@ -11,6 +11,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class CreateDictionaryCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "[title] [languageName (should be one that is not present in our system)]";
         private const int NumberOfParameters = 2;
 
         private readonly IRepository<Dictionary> dictionariesRepository;

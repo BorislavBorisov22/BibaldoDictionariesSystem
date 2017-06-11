@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Bytes2you.Validation;
 using DictionariesSystem.Contracts.Core.Commands;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Dictionaries;
-using Bytes2you.Validation;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DictionariesSystem.Framework.Core.Commands.Delete
 {
     public class DeleteDictionaryCommand : BaseCommand, ICommand
     {
+        public const string ParametersNamse = "[dictionaryTitle]";
         private const int NumberOfParameters = 1;
+
         private readonly IRepository<Dictionary> dictionaries;
         private readonly IUnitOfWork unitOfWork;
 

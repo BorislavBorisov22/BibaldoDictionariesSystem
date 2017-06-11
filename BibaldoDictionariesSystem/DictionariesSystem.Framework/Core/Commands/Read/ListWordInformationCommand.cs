@@ -11,7 +11,9 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
 {
     public class ListWordInformationCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "[dictionaryName] [wordName]";
         private const int NumberOfParameters = 2;
+
         private readonly IRepository<Dictionary> dictionaryRepository;
         private readonly IUserProvider userProvider;
 

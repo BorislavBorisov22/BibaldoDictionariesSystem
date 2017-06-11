@@ -1,7 +1,6 @@
-﻿using System;
-using Ninject.Extensions.Interception;
+﻿using Bytes2you.Validation;
 using DictionariesSystem.Contracts.Core.Providers;
-using Bytes2you.Validation;
+using Ninject.Extensions.Interception;
 
 namespace DictionariesSystem.ConsoleClient.Interceptors
 {

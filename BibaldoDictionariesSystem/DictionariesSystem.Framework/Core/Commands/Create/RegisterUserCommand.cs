@@ -9,6 +9,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class RegisterUserCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "[username] [password]";
         private const int NumberOfParameters = 2;
 
         private readonly IRepository<User> repository;

@@ -9,6 +9,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
 {
     public class GeneratePdfReportCommand : BaseCommand, ICommand
     {
+        public const string ParametersNames = "";
         private const int NumberOfParameters = 0;
 
         private readonly IPdfReporterProvider reporterProvider;
