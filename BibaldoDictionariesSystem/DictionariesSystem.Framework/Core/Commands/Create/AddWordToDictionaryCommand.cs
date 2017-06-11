@@ -15,7 +15,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 {
     public class AddWordToDictionaryCommand : BaseCommand, ICommand
     {
-        private  const int NumberOfParameters = 2;
+        private const int NumberOfParameters = 4;
 
         private readonly IRepository<Dictionary> dictionaries;
         private readonly IUnitOfWork unitOfWork;
@@ -45,11 +45,13 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
 
         public override string Execute(IList<string> parameters)
         {
+            Guard.WhenArgument(parameters.Count, "parameters.count").IsLessThan(NumberOfParameters).Throw();
+
             string wordName = parameters[0];
             string dictionaryTitle = parameters[1];
             string speechPart = parameters[2];
             string wordDescription = string.Join(" ", parameters.Skip(3));
-           
+
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
             Guard.WhenArgument(dictionary, "No Such Dictionary in the system").IsNull().Throw();
 
