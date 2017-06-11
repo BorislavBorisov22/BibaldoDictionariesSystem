@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Bytes2you.Validation;
 using DictionariesSystem.Contracts.Core.Commands;
+using DictionariesSystem.Contracts.Core.Factories;
 using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Models.Dictionaries;
-using Bytes2you.Validation;
 using System.Collections.Generic;
 using System.Linq;
-using DictionariesSystem.Contracts.Core.Factories;
 
 namespace DictionariesSystem.Framework.Core.Commands.Update
 {
