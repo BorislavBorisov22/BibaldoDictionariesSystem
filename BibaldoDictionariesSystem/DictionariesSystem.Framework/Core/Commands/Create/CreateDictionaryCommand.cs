@@ -52,8 +52,6 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             var newDictionary = this.dictionariesFactory.GetDictionary(title, author, language, DateProvider.Provider.GetDate());
 
             this.dictionariesRepository.Add(newDictionary);
-            this.userProvider.LoggedUser.ContributionsCount += 3;
-
             this.unitOfWork.SaveChanges();
 
             string result = $"A new dictionary with title {title}, author {author} and language {languageName} was created.";

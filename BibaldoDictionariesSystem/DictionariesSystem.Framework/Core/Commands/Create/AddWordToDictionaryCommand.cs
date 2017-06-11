@@ -67,8 +67,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             Word newWord = this.dictionariesFactory.GetWord(wordName, speechPart);
             newWord.Meanings.Add(wordMeaning);
             dictionary.Words.Add(newWord);
-
-            this.userProvider.LoggedUser.ContributionsCount += 1;
+            
             this.unitOfWork.SaveChanges();
 
             string result = $"A new word: {wordName} was added into dictionary: {dictionaryTitle}\n{wordName} means {wordDescription}";
