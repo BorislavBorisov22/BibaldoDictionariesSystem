@@ -1,0 +1,103 @@
+{
+    "words": [{
+            "name": "dictionary",
+            "description": "a reference book that contains words listed in alphabetical order and that gives information about the words' meanings, forms, pronunciations, etc",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "car",
+            "description": "a vehicle that has four wheels and an engine and that is used for carrying passengers on roads",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "fix",
+            "description": "to make (something) whole or able to work properly again",
+            "speechPart": "Verb"
+        },
+        {
+            "name": "repair",
+            "description": "to put (something that is broken or damaged) back into good condition",
+            "speechPart": "Verb"
+        },
+        {
+            "name": "beautiful",
+            "description": "very attractive in a physical way",
+            "speechPart": "Adjective"
+        },
+        {
+            "name": "crazy",
+            "description": "This sense is no longer used in a serious way and is now usually considered offensive. The phrase mentally ill is preferred",
+            "speechPart": "Adjective"
+        },
+        {
+            "name": "order",
+            "description": "a statement made by a person with authority that tells someone to do something : an instruction or direction that must be obeyed",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "ordered",
+            "description": "carefully organized or controlled",
+            "speechPart": "Adjective"
+        },
+        {
+            "name": "backstabbing",
+            "description": "harmful and unfair things that are said or done to hurt the reputation of someone",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "physiology",
+            "description": "a science that deals with the ways that living things function",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "verb",
+            "description": "a word (such as jump, think, happen, or exist) that is usually one of the main parts of a sentence and that expresses an action, an occurrence, or a state of being",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "amazing",
+            "description": "causing great surprise or wonder : causing amazement",
+            "speechPart": "Adjective"
+        },
+        {
+            "name": "quiz",
+            "description": "a short spoken or written test that is often taken without preparation",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "edit",
+            "description": "to prepare (something written) to be published or used : to make changes, correct mistakes, etc., in (something written)",
+            "speechPart": "Verb"
+        },
+        {
+            "name": "ear",
+            "description": "the part of the body that you hear with",
+            "speechPart": "Noun"
+        },
+        {
+            "name": "winded",
+            "description": "unable to breathe easily or normally because you have been running, climbing, etc.",
+            "speechPart": "Adjective"
+        },
+        {
+            "name": "wander",
+            "description": "to move around or go to different places usually without having a particular purpose or direction",
+            "speechPart": "Verb"
+        },
+        {
+            "name": "zap",
+            "description": "to attack, destroy, or kill (someone or something) quickly",
+            "speechPart": "Verb"
+        },
+        {
+            "name": "quick",
+            "description": "done or happening in a short amount of time",
+            "speechPart": "Adjective"
+        },
+        {
+            "name": "astounded",
+            "description": "feeling or showing great surprise or wonder",
+            "speechPart": "Adjective"
+        }
+    ]
+}

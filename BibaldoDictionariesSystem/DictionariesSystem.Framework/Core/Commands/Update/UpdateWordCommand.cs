@@ -10,7 +10,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
 {
     public class UpdateWordCommand : BaseCommand, ICommand
     {
-        public const string ParametersNames = "[dictionaryTitle] [wordName] [newDescription]";
+        public const string ParametersNames = "[dictionaryTitle] [wordName] [newMeaning]";
         private const int NumberOfParameters = 3;
 
         private readonly IRepository<Dictionary> dictionaries;
@@ -42,8 +42,6 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
             string wordName = parameters[1];
             string newDescription = string.Join(" ", parameters.Skip(2));
             
-            // TODO base.Execute();
-
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
             Guard.WhenArgument(dictionary, "No dictionary with this name was found.").IsNull().Throw();
 

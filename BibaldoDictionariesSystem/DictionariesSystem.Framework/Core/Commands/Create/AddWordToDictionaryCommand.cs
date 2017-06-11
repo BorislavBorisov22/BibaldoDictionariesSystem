@@ -48,9 +48,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             string dictionaryTitle = parameters[1];
             string speechPart = parameters[2];
             string wordDescription = string.Join(" ", parameters.Skip(3));
-
-            // TODO: base.Execute();
-
+            
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
             Guard.WhenArgument(dictionary, "No Such Dictionary in the system").IsNull().Throw();
 
@@ -58,7 +56,6 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             Guard.WhenArgument(foundWord, "Word Already exists").IsNotNull().Throw();
 
             Meaning wordMeaning = dictionary.Meanings.FirstOrDefault(m => m.Description == wordDescription);
-
             if (wordMeaning == null)
             {
                 wordMeaning = this.dictionariesFactory.GetMeaning(wordDescription);

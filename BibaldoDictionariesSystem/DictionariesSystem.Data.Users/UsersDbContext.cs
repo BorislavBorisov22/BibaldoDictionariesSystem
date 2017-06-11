@@ -13,7 +13,6 @@ namespace DictionariesSystem.Data.Users
         public UsersDbContext()
             : base(ConnectionStringName)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UsersDbContext, Configuration>());
         }
 
         public virtual IDbSet<User> Users { get; set; }

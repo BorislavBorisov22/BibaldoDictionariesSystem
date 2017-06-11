@@ -11,7 +11,6 @@ namespace DictionariesSystem.Data.Dictionaries
         public DictionariesDbContext()
             : base(ConnectionStringName)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DictionariesDbContext, Configuration>());
         }
 
         public virtual IDbSet<Dictionary> Dictionaries { get; set; }

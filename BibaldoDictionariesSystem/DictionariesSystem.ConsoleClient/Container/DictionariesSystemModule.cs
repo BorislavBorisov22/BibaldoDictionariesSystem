@@ -135,6 +135,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<IUserFactory>().To<UserFactory>().InSingletonScope();
 
             // importers factory
+            this.Bind<IWordsImporterFactory>().ToFactory().InSingletonScope();
             this.Bind<IWordsImporterProvider>().ToMethod(context =>
             {
                 IList<IParameter> parameters = context.Parameters.ToList();
@@ -146,7 +147,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             }).NamedLikeFactoryMethod((IWordsImporterFactory factory) => factory.GetImporter(null));
 
             // commands factory
-            this.Bind<ICommandFactory>().ToFactory();
+            this.Bind<ICommandFactory>().ToFactory().InSingletonScope();
             this.Bind<ICommand>().ToMethod(context =>
             {
                 IList<IParameter> parameters = context.Parameters.ToList();

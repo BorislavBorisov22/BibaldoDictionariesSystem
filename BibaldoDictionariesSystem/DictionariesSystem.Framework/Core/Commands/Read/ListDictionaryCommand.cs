@@ -39,14 +39,20 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
             var dictionary = this.dictionaries.All(d => d.Title == dictionaryTitle).FirstOrDefault();
             Guard.WhenArgument(dictionary, "No dictionary with this name").IsNull().Throw();
 
-            StringBuilder words = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine();
+            builder.AppendLine($"Title: {dictionary.Title}");
+            builder.AppendLine($"Author: {dictionary.Author}");
+            builder.AppendLine($"Languade: {dictionary.Language.Name}");
+            builder.AppendLine($"Words:");
 
             foreach (Word word in dictionary.Words)
             {
-                words.AppendLine($"{word.Name} : {string.Join(", ", word.Meanings.Select(x => x.Description))}");
+                builder.AppendLine($" {word.Name} : {string.Join(", ", word.Meanings.Select(x => x.Description))}");
             }
 
-            return words.ToString();
+            return builder.ToString();
         }
     }
 }
