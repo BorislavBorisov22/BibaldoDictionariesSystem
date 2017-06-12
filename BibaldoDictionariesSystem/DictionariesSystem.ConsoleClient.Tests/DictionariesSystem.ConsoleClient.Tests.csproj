@@ -61,9 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interceptors\CommandProcessorInterceptorTests\Intercept_Should.cs" />
-    <Compile Include="Interceptors\UserLoggedInterceptorTests\Constructor_Should.cs" />
-    <Compile Include="Interceptors\UserLoggedInterceptorTests\Fakes\FakeCommand.cs" />
-    <Compile Include="Interceptors\UserLoggedInterceptorTests\Intercept_Should.cs" />
+    <Compile Include="Interceptors\UserLoggerInterceptorTests\Constructor_Should.cs" />
+    <Compile Include="Interceptors\UserLoggerInterceptorTests\Fakes\FakeCommand.cs" />
+    <Compile Include="Interceptors\UserLoggerInterceptorTests\Intercept_Should.cs" />
+    <Compile Include="Interceptors\UserAuthenticatorInterceptorTests\Constructor_Should.cs" />
+    <Compile Include="Interceptors\UserAuthenticatorInterceptorTests\Intercept_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
