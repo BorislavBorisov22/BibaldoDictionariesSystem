@@ -54,6 +54,12 @@
   <ItemGroup>
     <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Constructor_Should.cs" />
     <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Execute_Should.cs" />
+    <Compile Include="Core\Providers\CommandProcessorTests\Constructor_Should.cs" />
+    <Compile Include="Core\Providers\CommandProcessorTests\ProcessCommand_Should.cs" />
+    <Compile Include="Core\Providers\Loggers\ExceptionLoggerTests\Constructor_Should.cs" />
+    <Compile Include="Core\Providers\Loggers\ExceptionLoggerTests\Log_Should.cs" />
+    <Compile Include="Core\Providers\Loggers\UserLoggerTests\Constructor_Should.cs" />
+    <Compile Include="Core\Providers\Loggers\UserLoggerTests\Log_Should.cs" />
     <Compile Include="Core\Providers\UserProviderTests\Constructor_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\EngineTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

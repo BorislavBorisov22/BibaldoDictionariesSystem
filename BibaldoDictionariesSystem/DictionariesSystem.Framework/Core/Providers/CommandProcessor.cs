@@ -19,6 +19,7 @@ namespace DictionariesSystem.Framework.Core.Providers
 
         public string ProcessCommand(string commandAsText)
         {
+            Guard.WhenArgument(commandAsText, "commandAsText").IsNull().Throw();
             var commandParameters = commandAsText.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             string commandName = commandParameters[0];
