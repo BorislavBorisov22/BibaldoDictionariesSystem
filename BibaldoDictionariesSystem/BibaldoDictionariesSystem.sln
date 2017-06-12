@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.Models", "DictionariesSystem.Models\DictionariesSystem.Models.csproj", "{928437ED-8A5E-4257-B685-7C92E44D49D8}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.Data.Common", "DictionariesSystem.Data.Common\DictionariesSystem.Data.Common.csproj", "{38923FC0-65AC-4986-A0D4-0D38C5B95FA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.Framework.Tests", "DictionariesSystem.Framework.Tests\DictionariesSystem.Framework.Tests.csproj", "{B39B43BC-02E0-4081-A9F8-A0D29ACB6B64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionariesSystem.ConsoleClient.Tests", "DictionariesSystem.ConsoleClient.Tests\DictionariesSystem.ConsoleClient.Tests.csproj", "{69C17533-ABB2-4622-8F7E-C2BFBEEFFED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B39B43BC-02E0-4081-A9F8-A0D29ACB6B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B39B43BC-02E0-4081-A9F8-A0D29ACB6B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B39B43BC-02E0-4081-A9F8-A0D29ACB6B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C17533-ABB2-4622-8F7E-C2BFBEEFFED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C17533-ABB2-4622-8F7E-C2BFBEEFFED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C17533-ABB2-4622-8F7E-C2BFBEEFFED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C17533-ABB2-4622-8F7E-C2BFBEEFFED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
