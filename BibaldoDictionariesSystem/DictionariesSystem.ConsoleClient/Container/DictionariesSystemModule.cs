@@ -235,7 +235,7 @@ namespace DictionariesSystem.ConsoleClient.Container
                 importWordsBinding.Intercept().With<UserAuthenticatorInterceptor>();
                 importWordsBinding.Intercept().With<UserLoggerInterceptor>();
                 importWordsBinding.Intercept().With<UserContributionsInterceptor>();
-            }
+            }            
         }
     }
 }

@@ -55,6 +55,12 @@
     <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Constructor_Should.cs" />
     <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Execute_Should.cs" />
     <Compile Include="Core\Providers\UserProviderTests\Constructor_Should.cs" />
+    <Compile Include="Core\Providers\UserProviderTests\Fakes\FakeUserProvider.cs" />
+    <Compile Include="Core\Providers\UserProviderTests\IsLogged_Should.cs" />
+    <Compile Include="Core\Providers\UserProviderTests\LoggedUser_Should.cs" />
+    <Compile Include="Core\Providers\UserProviderTests\Login_Should.cs" />
+    <Compile Include="Core\Providers\UserProviderTests\Logout_Should.cs" />
+    <Compile Include="Core\Providers\UserProviderTests\Register_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
