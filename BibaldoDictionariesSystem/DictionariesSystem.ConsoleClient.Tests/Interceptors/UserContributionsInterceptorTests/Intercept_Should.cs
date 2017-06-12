@@ -63,6 +63,7 @@ namespace DictionariesSystem.ConsoleClient.Tests.Interceptors.UserContributionsI
 
             var badge = new Badge() { RequiredContributions = 20 };
             var badges = new List<Badge>() { badge };
+            user.Badges.Add(badge);
 
             userProvider.Setup(x => x.LoggedUser).Returns(user);
             usersRepository.Setup(x => x.All(It.IsAny<Expression<Func<User, bool>>>()))
