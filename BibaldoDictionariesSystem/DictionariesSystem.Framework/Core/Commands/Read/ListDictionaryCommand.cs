@@ -44,7 +44,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
             builder.AppendLine();
             builder.AppendLine($"Title: {dictionary.Title}");
             builder.AppendLine($"Author: {dictionary.Author}");
-            builder.AppendLine($"Languade: {dictionary.Language.Name}");
+            builder.AppendLine($"Language: {dictionary.Language.Name}");
             builder.AppendLine($"Words:");
 
             foreach (Word word in dictionary.Words)
