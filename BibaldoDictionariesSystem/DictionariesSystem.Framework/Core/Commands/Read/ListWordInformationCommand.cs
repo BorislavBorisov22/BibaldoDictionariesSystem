@@ -15,15 +15,12 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
         private const int NumberOfParameters = 2;
 
         private readonly IRepository<Dictionary> dictionaryRepository;
-        private readonly IUserProvider userProvider;
 
-        public ListWordInformationCommand(IRepository<Dictionary> dictionaryRepository, IUserProvider userProvider)
+        public ListWordInformationCommand(IRepository<Dictionary> dictionaryRepository)
         {
             Guard.WhenArgument(dictionaryRepository, "dictionariyRepository").IsNull().Throw();
-            Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
 
             this.dictionaryRepository = dictionaryRepository;
-            this.userProvider = userProvider;
         }
 
         protected override int ParametersCount
@@ -52,7 +49,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Read
 
             if (word.RootWord != null)
             {
-                wordInformation.AppendLine($"{word.Name} comes from {word.RootWord}");
+                wordInformation.AppendLine($"{word.Name} comes from {word.RootWord.Name}");
             }
 
             wordInformation.AppendLine($"{word.Name} means {string.Join("; ", word.Meanings.Select(x => x.Description))}");
