@@ -6,7 +6,7 @@
 The newest dictionary system, that threatens to conquer the market with its awesomeness! Smart, console based, simple to work with -
 you can tell for sure that these guys are not messing around. With its deceptively simple interface and commands you can do whatever
 you want, like adding, reading, deleting, updating and even some special commands for the enthusiasts. What do you wait for? Get
-the app and start storing your dictionaries and words like never before - now even ON 3 DATABASES!
+the app and start storing your dictionaries and words like never before and with our newest addition - ON 3 DATABASES!
 
 # Credits
 | Team member         | Username                                                                    |
