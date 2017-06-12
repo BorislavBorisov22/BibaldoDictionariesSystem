@@ -56,6 +56,8 @@
     <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Execute_Should.cs" />
     <Compile Include="Core\EngineTests\Constructor_Should.cs" />
     <Compile Include="Core\EngineTests\Start_Should.cs" />
+    <Compile Include="Core\Commands\Delete\DeleteWordCommandTests\Constructor_Should.cs" />
+    <Compile Include="Core\Commands\Delete\DeleteWordCommandTests\Execute_Should.cs" />
     <Compile Include="Core\Providers\CommandProcessorTests\Constructor_Should.cs" />
     <Compile Include="Core\Providers\CommandProcessorTests\ProcessCommand_Should.cs" />
     <Compile Include="Core\Providers\Loggers\ExceptionLoggerTests\Constructor_Should.cs" />
