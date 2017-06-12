@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\CommandTests\Create\AddWordToDictionaryTests.cs" />
+    <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Constructor_Should.cs" />
+    <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Execute_Should.cs" />
+    <Compile Include="Core\Providers\UserProviderTests\Constructor_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
