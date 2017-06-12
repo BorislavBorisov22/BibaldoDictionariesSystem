@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DictionariesSystem.Framework.Tests.Core.Commands.Create.CreateDictionaryCommandTests
-{ 
+{
     public class Execute_Should
     {
         [Test]
@@ -55,7 +55,7 @@ namespace DictionariesSystem.Framework.Tests.Core.Commands.Create.CreateDictiona
         }
 
         [Test]
-        public void ReturnCorrectMessage_WhenMoreThanTwoParametersArePassed()
+        public void ReturnCorrectMessage_WhenCorrectParrametersArePassed()
         {
             var repository = new Mock<IRepository<Dictionary>>();
             var unitOfWork = new Mock<IUnitOfWork>();
@@ -79,15 +79,15 @@ namespace DictionariesSystem.Framework.Tests.Core.Commands.Create.CreateDictiona
                 Author = authorName,
                 Language = language,
                 Title = dictionaryTitle
-            };          
+            };
 
             dictionaryFactory.Setup(d => d.GetLanguage(languageName)).Returns(language);
-            dictionaryFactory.Setup(d => d.GetDictionary(dictionaryTitle, authorName, 
+            dictionaryFactory.Setup(d => d.GetDictionary(dictionaryTitle, authorName,
                 language, It.IsAny<DateTime>()))
                 .Returns(dictionary);
 
             var command = new CreateDictionaryCommand(repository.Object, unitOfWork.Object,
-                userProvider.Object, dictionaryFactory.Object);         
+                userProvider.Object, dictionaryFactory.Object);
 
             var parameters = new List<string>()
             {
@@ -99,6 +99,97 @@ namespace DictionariesSystem.Framework.Tests.Core.Commands.Create.CreateDictiona
             string result = command.Execute(parameters);
 
             Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        public void ReturnAddCorrectDictionary_WhenCorrectParrametersArePassed()
+        {
+            var repository = new Mock<IRepository<Dictionary>>();
+            var unitOfWork = new Mock<IUnitOfWork>();
+            var userProvider = new Mock<IUserProvider>();
+            var dictionaryFactory = new Mock<IDictionariesFactory>();
+
+            string authorName = "Whoever";
+            string dictionaryTitle = "Vse Taq";
+            string languageName = "English";
+
+            User user = new User()
+            {
+                Username = authorName
+            };
+            userProvider.Setup(u => u.LoggedUser).Returns(user);
+
+            var language = new Language() { Name = languageName };
+
+            var dictionary = new Dictionary()
+            {
+                Author = authorName,
+                Language = language,
+                Title = dictionaryTitle
+            };
+
+            dictionaryFactory.Setup(d => d.GetLanguage(languageName)).Returns(language);
+            dictionaryFactory.Setup(d => d.GetDictionary(dictionaryTitle, authorName,
+                language, It.IsAny<DateTime>()))
+                .Returns(dictionary);
+
+            var command = new CreateDictionaryCommand(repository.Object, unitOfWork.Object,
+                userProvider.Object, dictionaryFactory.Object);
+
+            var parameters = new List<string>()
+            {
+                dictionaryTitle,
+                languageName
+            };
+            command.Execute(parameters);
+
+            repository.Verify(r => r.Add(It.Is<Dictionary>(d => d == dictionary)), Times.Once);
+        }
+
+        [Test]
+        public void SavesMadeChanges_WhenCorrectParrametersArePassed()
+        {
+            var repository = new Mock<IRepository<Dictionary>>();
+            var unitOfWork = new Mock<IUnitOfWork>();
+            var userProvider = new Mock<IUserProvider>();
+            var dictionaryFactory = new Mock<IDictionariesFactory>();
+
+            string authorName = "Whoever";
+            string dictionaryTitle = "Vse Taq";
+            string languageName = "English";
+
+            User user = new User()
+            {
+                Username = authorName
+            };
+            userProvider.Setup(u => u.LoggedUser).Returns(user);
+
+            var language = new Language() { Name = languageName };
+
+            var dictionary = new Dictionary()
+            {
+                Author = authorName,
+                Language = language,
+                Title = dictionaryTitle
+            };
+
+            dictionaryFactory.Setup(d => d.GetLanguage(languageName)).Returns(language);
+            dictionaryFactory.Setup(d => d.GetDictionary(dictionaryTitle, authorName,
+                language, It.IsAny<DateTime>()))
+                .Returns(dictionary);
+
+            var command = new CreateDictionaryCommand(repository.Object, unitOfWork.Object,
+                userProvider.Object, dictionaryFactory.Object);
+
+            var parameters = new List<string>()
+            {
+                dictionaryTitle,
+                languageName
+            };
+
+            command.Execute(parameters);
+
+            unitOfWork.Verify(r => r.SaveChanges(), Times.Once);
         }
     }
 }
