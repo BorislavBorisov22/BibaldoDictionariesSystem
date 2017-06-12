@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interceptors\CommandProcessorInterceptorTests\Intercept_Should.cs" />
+    <Compile Include="Interceptors\UserLoggedInterceptorTests\Constructor_Should.cs" />
+    <Compile Include="Interceptors\UserLoggedInterceptorTests\Fakes\FakeCommand.cs" />
+    <Compile Include="Interceptors\UserLoggedInterceptorTests\Intercept_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +74,10 @@
     <ProjectReference Include="..\DictionariesSystem.ConsoleClient\DictionariesSystem.ConsoleClient.csproj">
       <Project>{0A9E4056-AD44-420C-A833-0FD0629D9AD5}</Project>
       <Name>DictionariesSystem.ConsoleClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DictionariesSystem.Contracts\DictionariesSystem.Contracts.csproj">
+      <Project>{EBD8272B-9914-48EB-89EA-072F2528C474}</Project>
+      <Name>DictionariesSystem.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\DictionariesSystem.Framework\DictionariesSystem.Framework.csproj">
       <Project>{96EF44E7-3074-4715-AC7E-E6EC695A77C1}</Project>
