@@ -36,13 +36,16 @@ namespace DictionariesSystem.ConsoleClient.Container
 {
     public class DictionariesSystemModule : NinjectModule
     {
+        // contexts
         private const string UsersDbContextName = "UsersDbContext";
         private const string LogsDbContextName = "LogsDbContext";
         private const string DictionariesDbContextName = "DictionariesDbContext";
 
+        // import file formats
         private const string JsonWordsImporterName = "json";
         private const string XmlWordsImporterName = "xml";
 
+        // commands
         // create
         public const string CreateDictionaryCommandName = "CreateDictionary";
         public const string AddWordToDictionaryCommandName = "AddWordToDictionary";
@@ -75,7 +78,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             this.Bind<DbContext>().To<UsersDbContext>().InSingletonScope().Named(UsersDbContextName);
             this.Bind<DbContext>().To<DictionariesDbContext>().InSingletonScope().Named(DictionariesDbContextName);
 
-            // units of work depending on context
+            // unit of work
             this.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
 
             // repositories

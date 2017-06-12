@@ -18,7 +18,6 @@ namespace DictionariesSystem.ConsoleClient.Interceptors
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
                 throw new InvalidCommandException(ex.Message, ex);
             }
         }

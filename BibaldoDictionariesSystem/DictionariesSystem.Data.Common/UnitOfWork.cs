@@ -16,10 +16,6 @@ namespace DictionariesSystem.Data.Common
             this.contexts = contexts;
         }
 
-        public void Dispose()
-        {
-        }
-
         public void SaveChanges()
         {
             foreach (var context in this.contexts)

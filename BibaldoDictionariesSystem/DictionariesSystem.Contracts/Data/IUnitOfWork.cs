@@ -2,7 +2,7 @@
 
 namespace DictionariesSystem.Contracts.Data
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         void SaveChanges();
     }

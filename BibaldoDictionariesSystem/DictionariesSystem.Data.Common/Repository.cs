@@ -21,6 +21,18 @@ namespace DictionariesSystem.Data.Common
             this.dbSet = context.Set<T>();
         }
 
+        public T GetById(object id)
+        {
+            var entity = this.dbSet.Find(id);
+            return entity;
+        }        
+
+        public IEnumerable<T> All(Expression<Func<T, bool>> filterExpression)
+        {
+            var entities = this.dbSet.Where(filterExpression);
+            return entities.ToList();
+        }
+
         public void Add(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
@@ -29,26 +41,18 @@ namespace DictionariesSystem.Data.Common
             entry.State = EntityState.Added;
         }
 
-        public IEnumerable<T> All(Expression<Func<T, bool>> filterExpression)
-        {
-            var entities = this.dbSet.Where(filterExpression);
-            return entities.ToList();
-        }
-
         public void Delete(T entity)
         {
+            Guard.WhenArgument(entity, "entity").IsNull().Throw();
+
             var entry = this.context.Entry(entity);
             entry.State = EntityState.Deleted;
-        }
-
-        public T GetById(object id)
-        {
-            var entity = this.dbSet.Find(id);
-            return entity;
-        }
+        }       
 
         public void Update(T entity)
         {
+            Guard.WhenArgument(entity, "entity").IsNull().Throw();
+
             var entry = this.context.Entry(entity);
             entry.State = EntityState.Modified;
         }

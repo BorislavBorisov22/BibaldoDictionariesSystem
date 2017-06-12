@@ -42,7 +42,6 @@ namespace DictionariesSystem.ConsoleClient.Interceptors
                 });
 
             this.unitOfWork.SaveChanges();
-
             invocation.Proceed();
         }
     }
