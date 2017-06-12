@@ -28,8 +28,8 @@ namespace DictionariesSystem.Framework.Tests.Core.Commands.Create.AddWordToDicti
             var parameters = new List<string>()
             {
                 "wordName",
-                "dictionaryTitle",
-                "speechPart"
+                "otherParam",
+                "anotherParam"
             };
 
             Assert.Throws<ArgumentOutOfRangeException>(() => command.Execute(parameters));
