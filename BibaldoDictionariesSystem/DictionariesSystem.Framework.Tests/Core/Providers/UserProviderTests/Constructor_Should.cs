@@ -9,10 +9,10 @@ using System;
 namespace DictionariesSystem.Framework.Tests.Core.Providers
 {
     [TestFixture]
-    public class UserProviderTests
+    public class Constructor_Should
     {
         [Test]
-        public void Constructor_ThrowArgumenNullException_WhenPassedUserRepositoryIsNull()
+        public void ThrowArgumenNullException_WhenPassedUserRepositoryIsNull()
         {
             // arrange & act & assert
             Assert.Throws<ArgumentNullException>
@@ -34,6 +34,14 @@ namespace DictionariesSystem.Framework.Tests.Core.Providers
             // arrange & act & assert
             Assert.Throws<ArgumentNullException>
                  (() => new UserProvider(new Mock<IRepository<User>>().Object, new Mock<IUnitOfWork>().Object, null));
-        } 
+        }
+        
+        [Test]
+        public void NotThrow_WhenPassedArgumentAreValid()
+        {
+            // arrange & act & assert
+            Assert.DoesNotThrow
+                (() => new UserProvider(new Mock<IRepository<User>>().Object, new Mock<IUnitOfWork>().Object, new Mock<IUserFactory>().Object));
+        }
     }
 }

@@ -38,7 +38,15 @@ namespace DictionariesSystem.Framework.Core.Providers
             {
                 return this.loggedUser;
             }
+
+            protected set
+            {
+                Guard.WhenArgument(value, "LoggedUser").IsNull().Throw();
+
+                this.loggedUser = value;
+            }
         }
+      
 
         public bool IsLogged
         {
@@ -59,7 +67,12 @@ namespace DictionariesSystem.Framework.Core.Providers
                 .All(x => x.Username == username && x.Passhash == password)
                 .FirstOrDefault();
 
-            this.loggedUser = targetUser ?? throw new UserAuthenticationException(InvalidLoginMessage);
+            if (targetUser == null)
+            {
+                throw new UserAuthenticationException(InvalidLoginMessage);
+            }
+
+            this.loggedUser = targetUser;
         }
 
         public void Logout()
