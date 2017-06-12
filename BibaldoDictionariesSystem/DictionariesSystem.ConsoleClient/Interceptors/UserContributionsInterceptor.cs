@@ -4,6 +4,7 @@ using DictionariesSystem.Contracts.Data;
 using DictionariesSystem.Contracts.Core.Providers;
 using DictionariesSystem.Models.Users;
 using System.Linq;
+using Bytes2you.Validation;
 
 namespace DictionariesSystem.ConsoleClient.Interceptors
 {
@@ -16,6 +17,11 @@ namespace DictionariesSystem.ConsoleClient.Interceptors
 
         public UserContributionsInterceptor(IUserProvider userProvider, IRepository<User> users, IRepository<Badge> badges, IUnitOfWork unitOfWork)
         {
+            Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
+            Guard.WhenArgument(users, "users").IsNull().Throw();
+            Guard.WhenArgument(badges, "badges").IsNull().Throw();
+            Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+
             this.userProvider = userProvider;
             this.users = users;
             this.badges = badges;
