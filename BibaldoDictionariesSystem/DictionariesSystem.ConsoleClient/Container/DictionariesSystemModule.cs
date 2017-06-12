@@ -68,6 +68,7 @@ namespace DictionariesSystem.ConsoleClient.Container
         public const string RegisterUserCommandName = "Register";
         public const string LoginUserCommandName = "Login";
         public const string LogoutCommandName = "Logout";
+        public const string ContributorsCommandName = "Contributors";
         public const string ClearCommandName = "Clear";
         public const string HelpCommandName = "--help";
 
@@ -101,6 +102,10 @@ namespace DictionariesSystem.ConsoleClient.Container
                 .WithConstructorArgument("context", this.Kernel.Get<DbContext>(LogsDbContextName));
 
             // from dictionaries db context
+            this.Bind<IRepository<Contributor>>().To<Repository<Contributor>>()
+                .InSingletonScope()
+                .WithConstructorArgument("context", this.Kernel.Get<DbContext>(DictionariesDbContextName));
+
             this.Bind<IRepository<Word>>().To<Repository<Word>>()
                 .InSingletonScope()
                 .WithConstructorArgument("context", this.Kernel.Get<DbContext>(DictionariesDbContextName));
@@ -182,6 +187,7 @@ namespace DictionariesSystem.ConsoleClient.Container
             var importWordsBinding = this.Bind<ICommand>().To<ImportWordsFromFileCommand>().Named(ImportWordsFromFileCommandName);
 
             // common
+            this.Bind<ICommand>().To<ContributorsCommand>().Named(ContributorsCommandName);
             this.Bind<ICommand>().To<RegisterCommand>().Named(RegisterUserCommandName);
             this.Bind<ICommand>().To<LoginCommand>().Named(LoginUserCommandName);
             this.Bind<ICommand>().To<LogoutCommand>().Named(LogoutCommandName);
@@ -235,7 +241,7 @@ namespace DictionariesSystem.ConsoleClient.Container
                 importWordsBinding.Intercept().With<UserAuthenticatorInterceptor>();
                 importWordsBinding.Intercept().With<UserLoggerInterceptor>();
                 importWordsBinding.Intercept().With<UserContributionsInterceptor>();
-            }            
+            }
         }
     }
 }

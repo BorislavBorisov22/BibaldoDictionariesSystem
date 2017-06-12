@@ -21,6 +21,8 @@ namespace DictionariesSystem.Data.Dictionaries
 
         public virtual IDbSet<Word> Words { get; set; }
 
+        public virtual IDbSet<Contributor> Contributors { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Dictionary>()

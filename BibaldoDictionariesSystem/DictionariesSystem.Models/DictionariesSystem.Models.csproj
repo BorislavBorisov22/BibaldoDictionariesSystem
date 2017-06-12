@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dictionaries\Contributor.cs" />
     <Compile Include="Dictionaries\Dictionary.cs" />
     <Compile Include="Dictionaries\Enums\SpeechPart.cs" />
     <Compile Include="Dictionaries\Language.cs" />

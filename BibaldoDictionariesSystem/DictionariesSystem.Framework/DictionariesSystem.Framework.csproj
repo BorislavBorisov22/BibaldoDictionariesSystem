@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Commands\Common\ClearCommand.cs" />
+    <Compile Include="Core\Commands\Common\ContributorsCommand.cs" />
     <Compile Include="Core\Commands\Common\HelpCommand.cs" />
     <Compile Include="Core\Commands\Common\LogoutCommand.cs" />
     <Compile Include="Core\Commands\Delete\DeleteDictionaryCommand.cs" />

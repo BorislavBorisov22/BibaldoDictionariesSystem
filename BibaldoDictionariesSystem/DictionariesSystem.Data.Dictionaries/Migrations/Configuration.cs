@@ -1,5 +1,6 @@
 namespace DictionariesSystem.Data.Dictionaries.Migrations
 {
+    using DictionariesSystem.Models.Dictionaries;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,18 +15,25 @@ namespace DictionariesSystem.Data.Dictionaries.Migrations
 
         protected override void Seed(DictionariesSystem.Data.Dictionaries.DictionariesDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Contributors.AddOrUpdate(x => x.FirstName,
+                new Contributor()
+                {
+                    FirstName = "Rosen",
+                    LastName = "Urkov",
+                    GithubProfile = "https://github.com/RosenUrkov"
+                },
+                new Contributor()
+                {
+                    FirstName = "Borislav",
+                    LastName = "Borisov",
+                    GithubProfile = "https://github.com/BorislavBorisov22"
+                },
+                new Contributor()
+                {
+                    FirstName = "Martin",
+                    LastName = "Kamenov",
+                    GithubProfile = "https://github.com/MartinKamenov"
+                });
         }
     }
 }
