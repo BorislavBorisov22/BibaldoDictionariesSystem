@@ -24,6 +24,7 @@ namespace DictionariesSystem.Framework.Core.Commands.Create
             Guard.WhenArgument(dictionariesRepository, "repository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
             Guard.WhenArgument(userProvider, "user").IsNull().Throw();
+            Guard.WhenArgument(dictionariesFactory, "dictionariesFactory").IsNull().Throw();
 
             this.dictionariesRepository = dictionariesRepository;
             this.unitOfWork = unitOfWork;

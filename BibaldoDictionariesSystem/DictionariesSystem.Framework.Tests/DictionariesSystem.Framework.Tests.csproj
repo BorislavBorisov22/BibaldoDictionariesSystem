@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Constructor_Should.cs" />
     <Compile Include="Core\Commands\Create\AddWordToDictionaryTests\Execute_Should.cs" />
+    <Compile Include="Core\Commands\Create\CreateDictionaryCommandTests\Constructor_Should.cs" />
+    <Compile Include="Core\Commands\Create\CreateDictionaryCommandTests\Execute_Should.cs" />
     <Compile Include="Core\Commands\Delete\DeleteDictionaryCommandTests\Constructor_Should.cs" />
     <Compile Include="Core\Commands\Delete\DeleteDictionaryCommandTests\Execute_Should.cs" />
     <Compile Include="Core\EngineTests\Constructor_Should.cs" />
