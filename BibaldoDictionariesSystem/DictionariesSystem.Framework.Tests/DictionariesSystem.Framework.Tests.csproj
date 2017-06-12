@@ -60,6 +60,8 @@
     <Compile Include="Core\Commands\Delete\DeleteDictionaryCommandTests\Execute_Should.cs" />
     <Compile Include="Core\Commands\Read\ListWordInformationCommandTests\Constructor_Should.cs" />
     <Compile Include="Core\Commands\Read\ListWordInformationCommandTests\Execute_Should.cs" />
+    <Compile Include="Core\Commands\Read\ListDictionaryCommandTests\Constructor_Should.cs" />
+    <Compile Include="Core\Commands\Read\ListDictionaryCommandTests\Execute_Should.cs" />
     <Compile Include="Core\Commands\Update\ImportWordsFromFileCommandTests\Constructor_Should.cs" />
     <Compile Include="Core\Commands\Update\ImportWordsFromFileCommandTests\Execute_Should.cs" />
     <Compile Include="Core\Commands\Read\ListBadgesCommandTests\Constructor_Should.cs" />
