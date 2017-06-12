@@ -46,9 +46,10 @@ namespace DictionariesSystem.Framework.Core.Commands.Update
             Guard.WhenArgument(dictionary, "No dictionary with this name was found.").IsNull().Throw();
 
             var word = dictionary.Words.FirstOrDefault(w => w.Name == wordName);
-            Guard.WhenArgument(wordName, "No word with this name was found.").IsNull().Throw();
+            Guard.WhenArgument(word, "No word with this name was found.").IsNull().Throw();
 
-            word.Meanings.Add(this.dictionaryFactory.GetMeaning(newDescription));
+            var newMeaning = this.dictionaryFactory.GetMeaning(newDescription);
+            word.Meanings.Add(newMeaning);
             this.unitOfWork.SaveChanges();
 
             string result = $"Added new meaning to word {wordName}: {newDescription}";
