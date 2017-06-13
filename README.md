@@ -9,6 +9,8 @@ you want, like adding, reading, deleting, updating and even some special command
 the app and start storing your dictionaries and words like never before and with our newest addition - ON 3 DATABASES!
 
 # Commands Supported by our system
+| CommandName           |  Command Description                                                                |
+| -------------         | :--------:                                                                          |
 | --help                | Gives you the full list of commands and their required parameters                   |
 | Register              | Registers a new user in our system                                                  |
 | Login                 | Logs a user into the system                                                         |
